@@ -3,6 +3,7 @@
     <head>
         <meta charset="UTF-8">        
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="https://bootswatch.com/4/sketchy/bootstrap.min.css" />
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" >
         <link rel="stylesheet" href="<?= PROJECT_LINK ?>/public/assets/css/style.css" />
         <title>Label Bulles projet</title>
@@ -76,12 +77,12 @@
             <!-- Gestion des utilisateurs par le gérant -->
             <div class="container col-8">
                 <ul class="list-group">
-                    <?php foreach ($users as $user){ ?>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <?= $user->getLastName() ?> <?= $user->getFirstName() ?>
-                        <a class="badge badge-warning badge-pill text-white" href="<?= $router->getFullUrl('getEditUser') ?>?id=<?= $user->getId() ?>">modifier</a>
-                        <a class="badge badge-danger badge-pill text-white" href="#">supprimer</a>
-                    </li>
+                    <?php foreach ($users as $user) { ?>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <?= $user->getLastName() ?> <?= $user->getFirstName() ?>
+                            <a class="badge badge-warning badge-pill text-white" href="<?= $router->getFullUrl('getEditUser') ?>?id=<?= $user->getId() ?>">modifier</a>
+                            <a class="badge badge-danger badge-pill text-white" href="#">supprimer</a>
+                        </li>
                     <?php } ?>
                 </ul>
             </div>

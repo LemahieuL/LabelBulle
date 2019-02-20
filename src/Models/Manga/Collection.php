@@ -12,6 +12,10 @@ class Collection {
     private $security;
     private $id;
     private $name;
+    private $description;
+    private $image;
+    private $author;
+    private $editor;
 
     public function __construct($id = false) {
         $this->security = new Security();
@@ -22,6 +26,10 @@ class Collection {
                 $collection = $req->fetch();
                 $this->id = $collection->id;
                 $this->name = $collection->collectionName;
+                $this->description = $collection->description;
+                $this->image = $collection->image;
+                $this->author = $collection->author;
+                $this->editor = $collection->editor;
                 return true;
             }
         }
@@ -35,11 +43,27 @@ class Collection {
     public function getId() {
         return $this->id;
     }
+    
+    public function getDescription(){
+        return $this->description;
+    }
+    
+    public function getImage(){
+        return $this->image;
+    }
+    
+    public function getAuthor(){
+        return $this->author;
+    }
+    
+    public function getEditor(){
+        return $this->editor;
+    }
+            
 
     public function addCollection($collectionName, $description, $collectionImg, $author, $editor, $idGenre) {
         $verifications = new MangaErrorMessage();
         $errors = false;
-        var_dump($collectionImg);
         if (!$verifications->isValidCollectionName('collectionName', $collectionName)) {
             $errors = true;
         }
@@ -57,7 +81,6 @@ class Collection {
             $this->queryAddCollection([$collectionName, $description, $collectionImg['name'], $author, $editor, $idGenre]);
             $this->security->safeLocalRedirect('profil');
         }
-        var_dump($verifications->getErrors());
         return $verifications->getErrors();
     }
 
@@ -71,6 +94,33 @@ class Collection {
 
     public function showCollection() {
         $req = $this->db->query('SELECT `id` FROM `manga_collection`');
+        $collections = [];
+        while ($collection = $req->fetch()) {
+            $collections[] = new Collection($collection->id);
+        }
+        return $collections;
+    }
+
+    public function showShonen() {
+        $req = $this->db->query('SELECT `id` FROM `manga_collection` WHERE id_genre = 1');
+        $collections = [];
+        while ($collection = $req->fetch()) {
+            $collections[] = new Collection($collection->id);
+        }
+        return $collections;
+    }
+
+    public function showShojo() {
+        $req = $this->db->query('SELECT `id` FROM `manga_collection` WHERE id_genre = 2');
+        $collections = [];
+        while ($collection = $req->fetch()) {
+            $collections[] = new Collection($collection->id);
+        }
+        return $collections;
+    }
+
+    public function showSeinen() {
+        $req = $this->db->query('SELECT `id` FROM `manga_collection` WHERE id_genre = 3');
         $collections = [];
         while ($collection = $req->fetch()) {
             $collections[] = new Collection($collection->id);

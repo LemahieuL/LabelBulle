@@ -12,6 +12,9 @@ $router->get('/user/profil', 'Profil#profil', 'profil');
 $router->get('/user/edit','Profil#getEditUser','getEditUser');
 $router->get('/manga/addManga', 'Manga#getAddManga', 'addManga');
 $router->get('/manga/addCollection', 'Manga#getAddCollection', 'addCollection');
+$router->get('/manga/shonen', 'Manga#showShonen', 'showShonen');
+$router->get('/manga/shojo', 'Manga#showShojo', 'showShojo');
+$router->get('/manga/seinen', 'Manga#showSeinen', 'showSeinen');
 
 /* route POST*/
 

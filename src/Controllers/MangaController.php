@@ -12,6 +12,16 @@ class MangaController extends Controller {
         $collections = new Collection();
         $this->render('manga/addManga', ['collections' => $collections->showCollection()]);
     }
+    
+    public function addManga(){
+        $manga = [];
+        $collections = new Collection();
+        if(isset($_POST['mangaName'],$_POST['mangaNumber'],$_POST['mangaDescription'],$_FILES['mangaImg'],$_POST['mangaPrice'],$_POST['mangaCollection'])){
+            $addManga = new Manga();
+            $manga = $addManga->addManga($_POST['mangaName'], $_POST['mangaNumber'], $_POST['mangaDescription'], $_FILES['mangaImg'], $_POST['mangaPrice'], $_POST['mangaCollection']);
+        }
+        $this->render('manga/addManga', ['collections' => $collections->showCollection()]);
+    }
 
     public function getAddCollection() {
         $genre = new Genre();
@@ -27,6 +37,21 @@ class MangaController extends Controller {
         }
         $this->render('manga/addCollection', ['genres' => $genre->showGenre()]);
         
+    }
+    
+    public function showShonen(){
+        $shonen = new Collection();        
+        $this->render('manga/shonen',['mangas' =>$shonen->showShonen()]);
+    }
+    
+        public function showShojo(){
+        $shojo = new Collection();
+        $this->render('manga/shonen',['mangas' =>$shojo->showShojo()]);
+    }
+    
+        public function showSeinen(){
+        $seinen = new Collection();
+        $this->render('manga/shonen',['mangas' =>$seinen->showSeinen()]);
     }
 
 }

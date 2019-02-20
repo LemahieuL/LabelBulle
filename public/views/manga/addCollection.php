@@ -3,6 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="https://bootswatch.com/4/sketchy/bootstrap.min.css" />
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" >
         <link rel="stylesheet" href="<?= PROJECT_LINK ?>/public/assets/css/style.css" />
         <title>Label Bulles projet</title>

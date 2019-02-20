@@ -97,7 +97,11 @@ class FormInputErrorMessage {
     public function isValidPassword($inputPassword, $string) {
         if (!empty($string)) {
             if (preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).+$/', $string)) {
+                if(strlen($string < 5)){
                 return true;
+                } else {
+                    $this->errors[$inputPassword] = 'Le mot de passe est trop court, 5 caractères minimum';
+                }
             } else {
                 $this->errors[$inputPassword] = 'Le mot de passe ne contient pas les caractères demandés';
             }

@@ -53,25 +53,53 @@ class MangaErrorMessage {
     public function isValidImage($inputName, $string) {
         $maximunSize = 5000000; /* Taille de 2Mo */
         $fileSize = $string['size'];
-        if ($fileSize < $maximunSize) {
-            $autorisedExtension = ['jpg', 'png', 'gif'];
-            $fileExtension = strtolower(pathinfo($string['name'], PATHINFO_EXTENSION));
-            if (in_array($fileExtension, $autorisedExtension)) {
-                $autorisedMIME = ['image/gif', 'image/jpeg', 'image/pjpeg', 'image/png'];
-                $MIME_Extension = mime_content_type($string['tmp_name']);
-                if (in_array($MIME_Extension, $autorisedMIME)) {
-                    return true;
+        if (!empty($string)) {
+            if ($fileSize < $maximunSize) {
+                $autorisedExtension = ['jpg', 'png', 'gif'];
+                $fileExtension = strtolower(pathinfo($string['name'], PATHINFO_EXTENSION));
+                if (in_array($fileExtension, $autorisedExtension)) {
+                    $autorisedMIME = ['image/gif', 'image/jpeg', 'image/pjpeg', 'image/png'];
+                    $MIME_Extension = mime_content_type($string['tmp_name']);
+                    if (in_array($MIME_Extension, $autorisedMIME)) {
+                        return true;
+                    } else {
+                        $this->errors[$inputName] = 'Le type du fichier n\'est pas autorisée';
+                    }
                 } else {
-                    $this->errors[$inputName] = 'Le type du fichier n\'est pas autorisée';
+                    $this->errors[$inputName] = 'L\'extension du fichier n\'est pas autorisé.';
                 }
             } else {
-                $this->errors[$inputName] = 'L\'extension du fichier n\'est pas autorisé.';
+                $this->errors[$inputName] = 'La taille du fichier est trop grande';
             }
         } else {
-            $this->errors[$inputName] = 'La taille du fichier est trop grande';
+            $this->errors[$inputName] = 'le champs est vide.';
         }
 
         return false;
+    }
+    
+    public function isValidMangaNumber($inputName, $string){
+        if(!empty($string)){
+            if(preg_match('/^\d+$/', $string)){
+            return true;
+            }else{
+                $this->errors[$inputName] = 'Mauvais caractères.';
+            }
+        } else {
+            $this->errors[$inputName] = 'le champs est vide.';
+        }
+    }
+
+    public function isValidPrice($inputName, $string) {
+        if (!empty($string)) {
+            if (preg_match('/^\d+(?:[.,]\d{2})?/', $string)) {
+                return true;
+            } else {
+                $this->errors[$inputName] = 'mauvais caractère.';
+            }
+        } else {
+            $this->errors[$inputName] = 'le champs est vide.';
+        }
     }
 
 }
