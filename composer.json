@@ -1,0 +1,20 @@
+{
+    "name": "lemahieu/label-bulle",
+    "description": "Projet LabelBulle",
+    "authors": [
+        {
+            "name": "Luc",
+            "email": "luc.lemahieu@laposte.net"
+        }
+    ],
+    
+    "autoload" : {
+        "psr-4":{
+            "Models\\":"src/Models",
+            "Controllers\\":"src/Controllers",
+            "App\\":"src/App"
+        }
+    },
+    
+    "require": {}
+}
