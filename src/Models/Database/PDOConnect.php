@@ -7,7 +7,7 @@ use \PDO;
 class PDOConnect {
 
     /**
-     *  Instance de PDO
+     * Instance de PDO
      * @var \PDO 
      */
     private $pdo;
@@ -69,7 +69,8 @@ class PDOConnect {
     }
 
     /**
-     * Execute la commande query sinon si il' n'y a pas de paramètres sinon execute la commande prepare et execute.
+     * Execute la commande query sinon si il' n'y a pas de paramètres 
+     * sinon execute la commande prepare et execute.
      * @param string $statement
      * @param bool|array $parameters
      * @return \PDOStatement

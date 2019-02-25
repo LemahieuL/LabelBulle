@@ -43,23 +43,22 @@ class Collection {
     public function getId() {
         return $this->id;
     }
-    
-    public function getDescription(){
+
+    public function getDescription() {
         return $this->description;
     }
-    
-    public function getImage(){
+
+    public function getImage() {
         return $this->image;
     }
-    
-    public function getAuthor(){
+
+    public function getAuthor() {
         return $this->author;
     }
-    
-    public function getEditor(){
+
+    public function getEditor() {
         return $this->editor;
     }
-            
 
     public function addCollection($collectionName, $description, $collectionImg, $author, $editor, $idGenre) {
         $verifications = new MangaErrorMessage();
@@ -82,14 +81,6 @@ class Collection {
             $this->security->safeLocalRedirect('profil');
         }
         return $verifications->getErrors();
-    }
-
-    private function queryAddCollection($params = []) {
-        $req = $this->db->query('INSERT INTO `manga_collection`(collectionName,description,image,author,editor,id_genre) VALUE (?,?,?,?,?,?)', $params);
-        if ($req) {
-            return true;
-        }
-        return false;
     }
 
     public function showCollection() {
@@ -126,6 +117,57 @@ class Collection {
             $collections[] = new Collection($collection->id);
         }
         return $collections;
+    }
+
+    public function getQueryDeleteCollection($id) {
+        $this->queryDeleteCollection([$id]);
+    }
+
+    public function getQueryUpdateCollection($collectionName, $description, $genre, $collectionImg, $collectionAuthor, $collectionEditor, $id) {
+        $verifications = new MangaErrorMessage();
+        $errors = false;
+    //        if (!$verifications->isValidCollectionName('collectionName', $collectionName)) {
+    //            $errors = true;
+    //        }
+        if (!$verifications->isValidName('author', $collectionAuthor)) {
+            $errors = true;
+        }
+        if (!$verifications->isValidName('editor', $collectionEditor)) {
+            $errors = true;
+        }
+        if (!$verifications->isValidImage('collectionImg', $collectionImg)) {
+            $errors = true;
+        }
+        if (!$errors) {
+            $this->queryUpdateCollection([$collectionName, $description, $collectionImg['name'], $collectionAuthor, $collectionEditor, $genre, $id]);
+//            $this->security->safeLocalRedirect('profil');
+        }
+        var_dump($verifications->getErrors());
+        return $verifications->getErrors();
+    }
+
+    private function queryAddCollection($params = []) {
+        $req = $this->db->query('INSERT INTO `manga_collection`(collectionName,description,image,author,editor,id_genre) VALUE (?,?,?,?,?,?)', $params);
+        if ($req) {
+            return true;
+        }
+        return false;
+    }
+
+    private function queryUpdateCollection($params = []) {
+        $req = $this->db->query('UPDATE `manga_collection` SET `collectionName` = ?, `description` = ?, `image` = ?, `author` = ?, `editor` = ?, `id_genre` = ? WHERE `id` = ?', $params);
+        if ($req) {
+            return true;
+        }
+        return false;
+    }
+
+    private function queryDeleteCollection($params = []) {
+        $req = $this->db->query('DELETE FROM `manga_collection` WHERE `id` = ?', $params);
+        if ($req) {
+            return true;
+        }
+        return false;
     }
 
 }

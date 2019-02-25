@@ -1,7 +1,7 @@
 <main>
     <div class="container">
-        <form method="post" action="<?= $router->getFullUrl('createCollection') ?>" enctype="multipart/form-data">
-            <h1 class="text-center">Création d'une collection.</h1>
+        <form method="post" action="<?= $router->getFullUrl('editCollection') ?>" enctype="multipart/form-data">
+            <h1 class="text-center">Mise a jour de la collection série.</h1>
             <div class="form-group row">
                 <div class="col-sm-12 col-md-12">
                     <label for="collectionName">Nom de la serie : </label>
@@ -14,17 +14,16 @@
                     <textarea class="form-control" rows="2" id="description" name="description" ></textarea>
                 </div>
                 <div class="col-sm-12 col-md-4">
-                    <label for="genre">Genre</label>
+                    <label for="genre">Genre :</label>
                     <select name="genre" id="genre" class="form-control">
                         <?php foreach ($genres as $genre) { ?>
                             <option value="<?= $genre->getId() ?>"><?= $genre->getName() ?></option>
-
                         <?php } ?>
                     </select>
                 </div>
             </div>
-            <div class="form-group">
-                <div class="col custom-file">
+            <div class="form-group row ">
+                <div class="col-sm-12 col-md-10 custom-file">
                     <label class="custom-file-label" for="collectionImg">Couverture du Tome : </label>
                     <input type="file" class="custom-file-input" id="collectionImg" name="collectionImg" />
                 </div>
@@ -39,9 +38,10 @@
                     <input type="text" id="collectionEditor" name="collectionEditor" />
                 </div>
             </div>
+            <input name="id" type="text" hidden value="<?= $_GET['id'] ?>" />
             <div class="row">
                 <div class="col-sm-12 col-md-3">
-                    <button class="btn btn-primary w-1OO text-white" type="submit">Créer la collection</button>
+                    <button class="btn btn-primary w-1OO text-white" type="submit">Mise à jour de la collection</button>
                 </div>
             </div>
         </form>

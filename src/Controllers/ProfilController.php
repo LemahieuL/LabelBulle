@@ -4,6 +4,8 @@ namespace Controllers;
 
 use Models\Profil\Profil;
 use Models\Profil\Rank;
+use Models\Manga\Collection;
+use Models\Manga\Genre;
 
 class ProfilController extends Controller {
 
@@ -35,10 +37,8 @@ class ProfilController extends Controller {
         if (isset($_POST['firstName'], $_POST['lastName'], $_POST['mail'], $_POST['login'], $_POST['password'])) {
             $addUser = new Profil();
             $users = $addUser->addUsers($_POST['firstName'], $_POST['lastName'], $_POST['mail'], $_POST['login'], $_POST['password'], $_POST['birthDay'], $_POST['phoneNumber']);
-            
-        } 
-            $this->render('profil/register', ['errors' => $users]);
-        
+        }
+        $this->render('profil/register', ['errors' => $users]);
     }
 
     public function login() {
@@ -52,7 +52,25 @@ class ProfilController extends Controller {
 
     public function profil() {
         $users = new Profil();
-        $this->render('profil/profil', ['users' => $users->showUsers()]);
+        $collections = new Collection();
+        $this->render('profil/profil', ['users' => $users->showUsers(), 'collections' => $collections->showCollection()]);
+    }
+
+    public function deleteCollection() {
+        $id = isset($_GET['id']) ? $_GET['id'] : 0;
+        $collection = new Collection();
+        $delete = $collection->getQueryDeleteCollection($id);
+        $this->security->safeLocalRedirect('profil');
+    }
+
+    public function updateCollection() {
+        $id = isset($_GET['id']) ? $_GET['id'] : 0;
+        $genre = new Genre();
+        if ($this->db->existContent('manga_collection', 'id', $id)) {
+            $this->render('manga/updateCollection', ['genres' => $genre->showGenre()]);
+        } else {
+            $this->security->safeLocalRedirect('default');
+        }
     }
 
 }
