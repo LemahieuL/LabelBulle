@@ -1,4 +1,5 @@
 <main>
+    <?php var_dump($_SESSION); ?>
     <div class="container col-8" >
         <p>
             <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#mailFormChanged" aria-expanded="false" aria-controls="collapseExample">
@@ -48,7 +49,7 @@
                     <th scope="row"><?= $collection->getName(); ?></th>
                     <td><span class="badge badge-primary badge-pill text-white">1</span></td>
                     <td><a class="badge badge-warning badge-pill text-white" href="<?= $router->getFullUrl('updateCollection'); ?>?id=<?= $collection->getId(); ?>">modifier</a></td>
-                    <td><a class="badge badge-danger badge-pill text-white" href="<?= $router->getFullUrl('deleteCollection'); ?>?id=<?= $collection->getId(); ?>">supprimer</a></td>
+                    <td><a class="badge badge-danger badge-pill text-white delete" data-collection-id="<?=$collection->getId(); ?>" data-toggle="modal" data-target="#collectionSupression">supprimer</a></td>
                 </tr>
             <?php } ?>
             </tbody>
@@ -78,6 +79,22 @@
                 </li>
             <?php } ?>
         </ul>
+    </div>
+        <div class="modal fade" id="collectionSupression" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    Voulez vous vraiment supprimer la collection ?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                    <form method="post" action="<?= $router->getFullUrl('deleteCollection'); ?>">
+                        <input id="deleteCollectionId" name="deleteCollectionId" type="hidden" value="0" />
+                        <button type="submit" class="btn btn-primary">Supprimer le manga</button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 </main>
 

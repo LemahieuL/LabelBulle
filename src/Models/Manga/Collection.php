@@ -7,7 +7,8 @@ use App\Protections\MangaErrorMessage;
 use App\Protections\Security;
 
 class Collection {
-
+    
+    /* Ensemble des fonction pour stocker les donnée des collections */
     private $db;
     private $security;
     private $id;
@@ -16,7 +17,13 @@ class Collection {
     private $image;
     private $author;
     private $editor;
-
+    
+    /**
+     * Fonction qui va se lancer a l'apelle de la class et qui va stoquer les données des 
+     * differents manga si on à l'id de la collection.
+     * @param boolean|int $id
+     * @return boolean
+     */
     public function __construct($id = false) {
         $this->security = new Security();
         $this->db = new PDOConnect();
@@ -35,7 +42,8 @@ class Collection {
         }
         return false;
     }
-
+    
+    /* Ensemble des fonctions pouvant etre utiliser dans les views */
     public function getName() {
         return $this->name;
     }
@@ -59,7 +67,18 @@ class Collection {
     public function getEditor() {
         return $this->editor;
     }
-
+    
+    /**
+     * Fonction qui va verifier les données envoyer et qui va exectuer le query si il n'y a pas d'erreur
+     * sinon il ne l'execute pas et renvoye les messages d'erreurs.
+     * @param string $collectionName
+     * @param string $description
+     * @param string $collectionImg
+     * @param string $author
+     * @param string $editor
+     * @param string $idGenre
+     * @return array
+     */
     public function addCollection($collectionName, $description, $collectionImg, $author, $editor, $idGenre) {
         $verifications = new MangaErrorMessage();
         $errors = false;

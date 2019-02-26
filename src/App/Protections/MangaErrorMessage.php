@@ -101,5 +101,9 @@ class MangaErrorMessage {
             $this->errors[$inputName] = 'le champs est vide.';
         }
     }
+    
+    public function mangaSerieVerification($inputName, $string){
+        
+    }
 
 }

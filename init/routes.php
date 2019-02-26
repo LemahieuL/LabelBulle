@@ -27,7 +27,6 @@ $router->get('/manga/mangaCollection', 'Manga#showManga', 'showMangaShonen');
 
 /* route pour la mise à jours des collections */
 
-$router->get('/user/deleteCollection', 'Profil#deleteCollection', 'deleteCollection');
 $router->get('/user/updateCollection', 'Profil#updateCollection', 'updateCollection');
 
 /* route POST*/
@@ -37,5 +36,6 @@ $router->post('/user/connection', 'Profil#login', 'pLogin');
 $router->post('/user/profil', 'Profil#editUser', 'editUser');
 $router->post('/manga/addCollection', 'Manga#addCollection', 'createCollection');
 $router->post('/manga/addManga', 'Manga#addManga', 'createManga');
-$router->post('/user/updatedollection', 'Manga#editCollection', 'editCollection');
+$router->post('/user/updateCollection', 'Manga#editCollection', 'editCollection');
+$router->post('/user/deleteCollection', 'Profil#deleteCollection', 'deleteCollection');
 

@@ -85,6 +85,13 @@ class PDOConnect {
         return $req;
     }
     
+    /**
+     * Vérifie si les données envoyer existe dans la base de donnée.
+     * @param string $table
+     * @param string $column
+     * @param string $value
+     * @return boolean
+     */
     public function existContent($table, $column, $value){
         $req = $this->query("SELECT id FROM {$table} WHERE {$column} = ?", [$value]);
         if($req->rowCount()>0){
@@ -92,9 +99,7 @@ class PDOConnect {
         }
         return false;
     }
-    /**
-     * Pour faire plaisir a Anousone
-     */
+
     public function __destruct() {
         
     }

@@ -8,7 +8,7 @@ use App\Protections\Security;
 use Models\Manga\Collection;
 
 class Manga {
-
+    /* Ensemble des fonction pour stocker les donnée des mangas */
     private $db;
     private $security;
     private $id;
@@ -23,7 +23,7 @@ class Manga {
     /**
      * Fonction qui va se lancer à l'apelle de la fonction et 
      * qui permet de stoquer les données si l'on a l'id du tome. 
-     * @param int $id
+     * @param boolean|int $id
      * @return boolean
      */
     public function __construct($id = false) {
@@ -45,7 +45,7 @@ class Manga {
         }
         return false;
     }
-    
+    /* Ensemble des fonctions pouvant etre utiliser dans les views */
     public function getMangaId(){
         return $this->id;
     }
@@ -79,7 +79,7 @@ class Manga {
     }
 
     /**
-     * Function qui va verifier mes données, renvoyer les messages d'errors 
+     * Fonction qui va verifier mes données, renvoyer les messages d'errors 
      * et si il n'y a pas d'errors va pouvoir exectuer la function query avec les données.
      * @param string $mangaName
      * @param string $mangaNumber
@@ -108,6 +108,11 @@ class Manga {
         return $verifications->getErrors();
     }
     
+    /**
+     * Fonction qui va permetre d'afficher les mangas présants dans la table manga_tomes
+     * et va renvoyer l'id pour pouvoir l'utiliser.
+     * @return \Models\Manga\Manga
+     */
     public function showMangaProfil(){
         $req = $this->db->query('SELECT * FROM `manga_tomes`');
                 $mangas = [];
@@ -116,7 +121,12 @@ class Manga {
         }
         return $mangas;
     }
-
+    
+    /**
+     * Fonction pour afficher les mangas lorsque l'on a l'id de la collection.
+     * @param type $id
+     * @return \Models\Manga\Manga
+     */
     public function showManga($id = []) {
         $req = $this->db->query('SELECT * FROM `manga_tomes` WHERE `id_manga_collection` = ? ORDER BY `tomeNumbers`', $id);
         $mangas = [];
@@ -127,7 +137,7 @@ class Manga {
     }
 
     /**
-     * Function qui va permet d'ajouter un manga dans la table manga_tome.
+     * Fonction qui va permet d'ajouter un manga dans la table manga_tome.
      * @param array $params
      * @return boolean
      */
