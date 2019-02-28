@@ -1,7 +1,7 @@
 <main>
     <div class="container">
         <form method="post" action="<?= $router->getFullUrl('editCollection') ?>" enctype="multipart/form-data">
-            <h1 class="text-center">Mise a jour de la collection série.</h1>
+            <h1 class="text-center">Mise à jour de la collection.</h1>
             <div class="form-group row">
                 <div class="col-sm-12 col-md-12">
                     <label for="collectionName">Nom de la serie : </label>
@@ -10,11 +10,11 @@
             </div>
             <div class="form-group row">
                 <div class="col-sm-12 col-md-8">
-                    <label for="description">Description :</label>
+                    <label for="description">Description : </label>
                     <textarea class="form-control" rows="2" id="description" name="description" ></textarea>
                 </div>
                 <div class="col-sm-12 col-md-4">
-                    <label for="genre">Genre :</label>
+                    <label for="genre">Genre : </label>
                     <select name="genre" id="genre" class="form-control">
                         <?php foreach ($genres as $genre) { ?>
                             <option value="<?= $genre->getId() ?>"><?= $genre->getName() ?></option>

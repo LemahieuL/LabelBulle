@@ -7,8 +7,8 @@ use App\Protections\MangaErrorMessage;
 use App\Protections\Security;
 
 class Collection {
-    
     /* Ensemble des fonction pour stocker les donnée des collections */
+
     private $db;
     private $security;
     private $id;
@@ -17,7 +17,7 @@ class Collection {
     private $image;
     private $author;
     private $editor;
-    
+
     /**
      * Fonction qui va se lancer a l'apelle de la class et qui va stoquer les données des 
      * differents manga si on à l'id de la collection.
@@ -42,8 +42,9 @@ class Collection {
         }
         return false;
     }
-    
+
     /* Ensemble des fonctions pouvant etre utiliser dans les views */
+
     public function getName() {
         return $this->name;
     }
@@ -67,7 +68,7 @@ class Collection {
     public function getEditor() {
         return $this->editor;
     }
-    
+
     /**
      * Fonction qui va verifier les données envoyer et qui va exectuer le query si il n'y a pas d'erreur
      * sinon il ne l'execute pas et renvoye les messages d'erreurs.
@@ -80,32 +81,45 @@ class Collection {
      * @return array
      */
     public function addCollection($collectionName, $description, $collectionImg, $author, $editor, $idGenre) {
+        // on instancie une nouvelle variable $verifications avec la class MangaErrorMessage.
         $verifications = new MangaErrorMessage();
         $errors = false;
+        //on verifie le nom de la collection
         if (!$verifications->isValidCollectionName('collectionName', $collectionName)) {
             $errors = true;
         }
+        // on verifie le nom de l'auteur
         if (!$verifications->isValidName('author', $author)) {
             $errors = true;
         }
+        // on verifie le nom de l'editeur
         if (!$verifications->isValidName('editor', $editor)) {
             $errors = true;
         }
+        //on verifie les donné de l'image.
         if (!$verifications->isValidImage('collectionImg', $collectionImg)) {
             $errors = true;
         }
-
+        // si il n'y a pas d'error on envois les donné dans la fonction queryAddCollection et apres on redirige vers la page profil.
         if (!$errors) {
+            // on envois les information dans la fonction queryAddCollection pour créer la collection.
             $this->queryAddCollection([$collectionName, $description, $collectionImg['name'], $author, $editor, $idGenre]);
             $this->security->safeLocalRedirect('profil');
         }
+        // on retourne les message d'erreurs.
         return $verifications->getErrors();
     }
-
+    
+    /**
+     * Fonction pour afficher l'id de toutes les collections
+     * @return \Models\Manga\Collection
+     */
     public function showCollection() {
+        // la requette pour aller chercher l'id dans la table manga_collection.
         $req = $this->db->query('SELECT `id` FROM `manga_collection`');
         $collections = [];
         while ($collection = $req->fetch()) {
+            // on retourne l'id de la collection dans la class Collection
             $collections[] = new Collection($collection->id);
         }
         return $collections;
@@ -145,9 +159,9 @@ class Collection {
     public function getQueryUpdateCollection($collectionName, $description, $genre, $collectionImg, $collectionAuthor, $collectionEditor, $id) {
         $verifications = new MangaErrorMessage();
         $errors = false;
-    //        if (!$verifications->isValidCollectionName('collectionName', $collectionName)) {
-    //            $errors = true;
-    //        }
+        //        if (!$verifications->isValidCollectionName('collectionName', $collectionName)) {
+        //            $errors = true;
+        //        }
         if (!$verifications->isValidName('author', $collectionAuthor)) {
             $errors = true;
         }

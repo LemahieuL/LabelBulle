@@ -13,9 +13,7 @@ class RouterExceptions extends \Exception {
         parent::__construct($message);
     }
     
-    /**
-     * Pour plaisir à Anousone
-     */
+
     public function __destruct() {
         
     }

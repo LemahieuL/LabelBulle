@@ -39,17 +39,6 @@ class Route {
     }
 
     /**
-     * Ajouter des paramètres d'URL ( ?url= )
-     * @param $param
-     * @param $regex
-     * @return $this
-     */
-    public function with($param, $regex) {
-        $this->params[$param] = str_replace('(', '(?:', $regex);
-        return $this;
-    }
-
-    /**
      * Savoir s'il y a des paramètres à prendre en compte sur la route
      * @param $url
      * @return bool

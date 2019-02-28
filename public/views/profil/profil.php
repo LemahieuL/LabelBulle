@@ -1,5 +1,4 @@
 <main>
-    <?php var_dump($_SESSION); ?>
     <div class="container col-8" >
         <p>
             <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#mailFormChanged" aria-expanded="false" aria-controls="collapseExample">
@@ -44,14 +43,14 @@
     <div class="container col-8">
         <table class="table table-hover col-12">
             <tbody>
-            <?php foreach ($collections as $collection) { ?>
-                <tr class="table-active">
-                    <th scope="row"><?= $collection->getName(); ?></th>
-                    <td><span class="badge badge-primary badge-pill text-white">1</span></td>
-                    <td><a class="badge badge-warning badge-pill text-white" href="<?= $router->getFullUrl('updateCollection'); ?>?id=<?= $collection->getId(); ?>">modifier</a></td>
-                    <td><a class="badge badge-danger badge-pill text-white delete" data-collection-id="<?=$collection->getId(); ?>" data-toggle="modal" data-target="#collectionSupression">supprimer</a></td>
-                </tr>
-            <?php } ?>
+                <?php foreach ($collections as $collection) { ?>
+                    <tr class="table-active">
+                        <th scope="row"><?= $collection->getName(); ?></th>
+                        <td><span class="badge badge-primary badge-pill text-white">1</span></td>
+                        <td><a class="badge badge-warning badge-pill text-white" href="<?= $router->getFullUrl('updateCollection'); ?>?id=<?= $collection->getId(); ?>">modifier</a></td>
+                        <td><a class="badge badge-danger badge-pill text-white delete" data-collection-id="<?= $collection->getId(); ?>" data-toggle="modal" data-target="#collectionSupression">supprimer</a></td>
+                    </tr>
+                <?php } ?>
             </tbody>
         </table>
         <div class="my-4">
@@ -70,17 +69,19 @@
     </div>
     <!-- Gestion des utilisateurs par le gérant -->
     <div class="container col-8">
-        <ul class="list-group">
-            <?php foreach ($users as $user) { ?>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    <?= $user->getLastName() ?> <?= $user->getFirstName() ?>
-                    <a class="badge badge-warning badge-pill text-white" href="<?= $router->getFullUrl('getEditUser') ?>?id=<?= $user->getId() ?>">modifier</a>
-                    <a class="badge badge-danger badge-pill text-white" href="#">supprimer</a>
-                </li>
-            <?php } ?>
-        </ul>
+        <table class="table table-hover col-12">
+            <tbody>
+                <?php foreach ($users as $user) { ?>
+                    <tr class="table-active">
+                        <th scope="row"><?= $user->getLastName() ?> <?= $user->getFirstName() ?></th>
+                        <td><a class="badge badge-warning badge-pill text-white" href="<?= $router->getFullUrl('getEditUser') ?>?id=<?= $user->getId() ?>">modifier</a></td>
+                        <td><a class="badge badge-danger badge-pill text-white" href="#">supprimer</a></td>
+                    </tr>
+                <?php } ?>
+            </tbody>
+        </table>
     </div>
-        <div class="modal fade" id="collectionSupression" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+    <div class="modal fade" id="collectionSupression" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-body">

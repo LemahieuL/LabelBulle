@@ -81,13 +81,9 @@ class ProfilController extends Controller {
      * Fonction pour supprimer une collection de manga.
      */
     public function deleteCollection() {
-
-       // $id = isset($_GET['id']) ? $_GET['id'] : 0;
- $id = isset($_POST['deleteCollectionId']) ? $_POST['deleteCollectionId'] : 0;
-//        $users = new Profil();
+        $id = isset($_POST['deleteCollectionId']) ? $_POST['deleteCollectionId'] : 0;
         $collection = new Collection();
         $delete = $collection->getQueryDeleteCollection($id);
-        var_dump($id);
         $this->security->safeLocalRedirect('profil');
     }
 

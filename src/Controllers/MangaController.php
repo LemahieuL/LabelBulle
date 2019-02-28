@@ -7,7 +7,7 @@ use \Models\Manga\Type;
 use \Models\Manga\Collection;
 
 class MangaController extends Controller {
-    
+
     /**
      * Fonction pour afficher l'ajout des mangas.
      */
@@ -15,20 +15,25 @@ class MangaController extends Controller {
         $collections = new Collection();
         $this->render('manga/addManga', ['collections' => $collections->showCollection()]);
     }
-    
+
     /**
      * Fonction pour envoyer les données de l'ajout des mangas.
      */
     public function addManga() {
         $manga = [];
+        // on instancie une nouvelle variable $collections avec la class Collection.
         $collections = new Collection();
+        // on verifie que les donné sont bien presante.
         if (isset($_POST['mangaName'], $_POST['mangaNumber'], $_POST['mangaDescription'], $_FILES['mangaImg'], $_POST['mangaPrice'], $_POST['mangaCollection'])) {
+            // on instancie une nouvelle variable $addManga avec la class Manga.
             $addManga = new Manga();
+            // on envois les donné recuperer dans la Function addManga de la class Manga.
             $manga = $addManga->addManga($_POST['mangaName'], $_POST['mangaNumber'], $_POST['mangaDescription'], $_FILES['mangaImg'], $_POST['mangaPrice'], $_POST['mangaCollection']);
         }
-        $this->render('manga/addManga', ['collections' => $collections->showCollection()]);
+        //si il y en a des erreur elle vont etre afficher.
+        $this->render('manga/addManga', ['errors' => $manga, 'collections' => $collections->showCollection()]);
     }
-    
+
     /**
      * Fonction pour afficher l'ajout de la collection des mangas.
      */
@@ -36,20 +41,25 @@ class MangaController extends Controller {
         $type = new Type();
         $this->render('manga/addCollection', ['genres' => $type->showGenre()]);
     }
-    
+
     /**
      * Fonction pour envoyer les données de l'ajout des collections des mangas.
      */
     public function addCollection() {
         $collection = [];
+        // on instancie une nouvelle variable $type avec la class Type.
         $type = new Type();
+        // on verifie que les donné sont bien presante.
         if (isset($_POST['collectionName'], $_POST['description'], $_POST['genre'], $_FILES['collectionImg'], $_POST['collectionAuthor'], $_POST['collectionEditor'])) {
+            // on instancie une nouvelle variable $addCollection avec la class Collection.
             $addCollection = new Collection();
+            // on envois les donné recuperer dans la Function addCollection de la class Collection.
             $collection = $addCollection->addCollection($_POST['collectionName'], $_POST['description'], $_FILES['collectionImg'], $_POST['collectionAuthor'], $_POST['collectionEditor'], $_POST['genre']);
         }
-        $this->render('manga/addCollection', ['genres' => $type->showType()]);
+        //si il y en a des erreur elle vont etre afficher.
+        $this->render('manga/addCollection', ['errors' => $collection, 'genres' => $type->showType()]);
     }
-    
+
     /**
      * Fonction pour afficher les differentes collection de mangas (shonen).
      */
@@ -57,7 +67,7 @@ class MangaController extends Controller {
         $shonen = new Collection();
         $this->render('manga/shonen', ['mangas' => $shonen->showShonen()]);
     }
-    
+
     /**
      * Fonction pour afficher les differentes collection de mangas (shojo)
      */
@@ -73,7 +83,7 @@ class MangaController extends Controller {
         $seinen = new Collection();
         $this->render('manga/shonen', ['mangas' => $seinen->showSeinen()]);
     }
-    
+
     /**
      * Fonction pour afficher les manga en fonction de la collection.
      */
@@ -86,7 +96,7 @@ class MangaController extends Controller {
             $this->security->safeLocalRedirect('default');
         }
     }
-    
+
     /**
      * Fonction pour mettre à jour une collection de manga.
      */

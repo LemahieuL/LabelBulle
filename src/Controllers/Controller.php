@@ -12,6 +12,7 @@ class Controller {
     protected $security;
 
     public function __construct() {
+        session_start();
         $this->db = new PDOConnect();
         $this->security = new Security();
     }

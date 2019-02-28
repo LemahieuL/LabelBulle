@@ -42,7 +42,6 @@ class Security {
         }
         print '<html>';
         print '<head><title>Redirection...</title>';
-        print "<meta http-equiv='Refresh' content='0;url='{$link}' />";
         print '</head>';
         print "<body onload='location.replace('{$link}')'>";
         print 'Vous rencontrez peut-être un problème.<br />';
