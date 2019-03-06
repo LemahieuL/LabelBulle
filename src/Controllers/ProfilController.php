@@ -72,9 +72,20 @@ class ProfilController extends Controller {
      * Fonction pour afficher le profil de l'utilisateur.
      */
     public function profil() {
+        $this->render('profil/profil');
+    }
+
+    public function management() {
         $users = new Profil();
         $collections = new Collection();
-        $this->render('profil/profil', ['page' => 'profil', 'users' => $users->showUsers(), 'collections' => $collections->showCollection()]);
+        $this->render('profil/management', ['page' => 'profil', 'users' => $users->showUsers(), 'collections' => $collections->showCollection()]);
+        
+    }
+
+    public function getDisconect() {
+        $profil = new Profil();
+        $disconet = $profil->getDisconect();
+        $this->security->safeLocalRedirect('index');
     }
 
     /**

@@ -30,6 +30,11 @@ class Profil {
             $req = $this->db->query('SELECT * FROM `users` WHERE `id`= ?', [$id]);
             if ($req->rowCount() > 0) {
                 $user = $req->fetch();
+            }
+        } elseif(isset($_SESSION['auth'])){
+            $user = $_SESSION['auth'];
+        }
+        if(isset($user)) {
                 $this->id = $user->id;
                 $this->firstName = $user->firstName;
                 $this->lastName = $user->lastName;
@@ -38,7 +43,6 @@ class Profil {
                 $this->password = $user->password;
                 $this->idRank = $user->id_ranks;
                 return true;
-            }
         }
         return false;
     }
@@ -87,8 +91,12 @@ class Profil {
      * function pour recuperer l'id du rang de l'utilisateur.
      * @return int
      */
-    public function getIdRank() {
-        return $this->idRank;
+    public function getRank() {
+        return new Rank($this->idRank);
+    }
+    
+    public function hasRank($rankId) {
+        return $this->getRank()->getId() >= $rankId;
     }
 
     /**
@@ -226,9 +234,13 @@ class Profil {
         }
         if (!$error) {
             $_SESSION['auth'] = $user;
-            var_dump($_SESSION['auth']);
+            $this->security->safeLocalRedirect('profil');
         }
         return $verifications->getErrors();
+    }
+    
+    public function getDisconect(){
+        unset($_SESSION['auth']);
     }
 
     /**

@@ -10,13 +10,15 @@ $router->get('/term/terms-of-use','Index#terms-of-use','terms-of-use');
 
 $router->get('/user/register', 'Profil#getRegister', 'register');
 $router->get('/user/connection', 'Profil#getConnect', 'connection');
+$router->get('/user/disconect', 'Profil#getDisconect', 'disconect');
 $router->get('/user/profil', 'Profil#profil', 'profil');
+$router->get('user/management', 'Profil#management', 'management');
 
 /* route pour la gestion dans le profil */
 
 $router->get('/user/edit','Profil#getEditUser','getEditUser');
 $router->get('/manga/addManga', 'Manga#getAddManga', 'addManga');
-$router->get('/manga/addCollection', 'Manga#addCollection', 'addCollection');
+$router->get('/manga/addCollection', 'Manga#getAddCollection', 'addCollection');
 
 /* route pour afficher les differents mangas */ 
 

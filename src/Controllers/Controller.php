@@ -5,6 +5,7 @@ namespace Controllers;
 use App\Views\View;
 use Models\Database\PDOConnect;
 use App\Protections\Security;
+use Models\Profil\Profil;
 
 class Controller {
 
@@ -31,6 +32,7 @@ class Controller {
      * @param array $args
      */
     protected function render($path, $args = []) {
+        $args['user'] = new Profil();
         $args['router'] = $this->getRouter();
         $view = new View('required/header');
         $view->assign($args);
@@ -39,7 +41,7 @@ class Controller {
         $view = new View('required/footer');
         $view->assign($args);
     }
-
+    
     public function __destruct() {
         
     }

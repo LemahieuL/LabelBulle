@@ -39,7 +39,7 @@ class MangaController extends Controller {
      */
     public function getAddCollection() {
         $type = new Type();
-        $this->render('manga/addCollection', ['genres' => $type->showGenre()]);
+        $this->render('manga/addCollection', ['genres' => $type->showType()]);
     }
 
     /**

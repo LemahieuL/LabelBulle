@@ -34,11 +34,32 @@
                             </li>
                         </ul>
                         <ul class="navbar-nav">
+                            <?php if (!isset($_SESSION['auth'])) { ?>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="<?= $router->getFullUrl('connection') ?>">Connexion</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="<?= $router->getFullUrl('register') ?>">Inscription</a>
+                                </li>
+                                <?php
+                            } else {
+                                ?>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="<?= $router->getFullUrl('profil') ?>">Profil</a>
+                                </li>
+                                <?php if ($user->hasRank(4)) { ?>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="<?= $router->getFullUrl('management') ?>">Gestion</a>
+                                    </li>
+                                <?php } ?>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="<?= $router->getFullUrl('disconect') ?>">Déconnexion</a>
+                                </li>
+                            <?php } ?>
+                        </ul>
+                        <ul class="navbar-nav">
                             <li class="nav-item">
                                 <a class="nav-link" data-toggle="modal" data-target="#panierModal"><i class="fas fa-shopping-cart fa-2x"></i></a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="<?= $router->getFullUrl('connection') ?>"><i class="fas fa-user-alt fa-2x"></i></a>
                             </li>
                         </ul>
                     </div>
