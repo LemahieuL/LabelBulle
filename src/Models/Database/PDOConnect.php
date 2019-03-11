@@ -8,31 +8,31 @@ class PDOConnect {
 
     /**
      * Instance de PDO
-     * @var \PDO 
+     * @var \PDO
      */
     private $pdo;
 
     /**
      * L'hote de la base de donnée
-     * @var string 
+     * @var string
      */
     private $db_host;
 
     /**
      * Le nom de l'utillisateur
-     * @var string 
+     * @var string
      */
     private $db_user;
 
     /**
      * le mot de passe de l'utillisateur
-     * @var string 
+     * @var string
      */
     private $db_password;
 
     /**
      * le nom de la base de donnée
-     * @var string 
+     * @var string
      */
     private $db_name;
 
@@ -43,7 +43,7 @@ class PDOConnect {
      * @param string $db_user
      * @param string $db_password
      */
-    public function __construct($db_name = 'projetPro', $db_host = 'localdev', $db_user = 'ichigochini', $db_password = 'L1610L1993') {
+    public function __construct($db_name = 'projetPro', $db_host = 'localhost', $db_user = 'ichigochini', $db_password = 'L1610L1993') {
         $this->db_host = $db_host;
         $this->db_password = $db_password;
         $this->db_user = $db_user;
@@ -69,7 +69,7 @@ class PDOConnect {
     }
 
     /**
-     * Execute la commande query sinon si il' n'y a pas de paramètres 
+     * Execute la commande query sinon si il' n'y a pas de paramètres
      * sinon execute la commande prepare et execute.
      * @param string $statement
      * @param bool|array $parameters
@@ -84,7 +84,7 @@ class PDOConnect {
         }
         return $req;
     }
-    
+
     /**
      * Vérifie si les données envoyer existe dans la base de donnée.
      * @param string $table
@@ -101,7 +101,7 @@ class PDOConnect {
     }
 
     public function __destruct() {
-        
+
     }
 
 }

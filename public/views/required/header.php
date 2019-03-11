@@ -47,7 +47,7 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="<?= $router->getFullUrl('profil') ?>">Profil</a>
                                 </li>
-                                <?php if ($user->hasRank(4)) { ?>
+                                <?php if ($user->hasRank(3)) { ?>
                                     <li class="nav-item">
                                         <a class="nav-link" href="<?= $router->getFullUrl('management') ?>">Gestion</a>
                                     </li>
@@ -86,4 +86,3 @@
                 </div>
             </div>
         </header>
-
