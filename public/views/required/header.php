@@ -8,7 +8,7 @@
         <link rel="stylesheet" href="<?= PROJECT_LINK ?>/public/assets/css/style.css" />
         <title>Label Bulles projet</title>
     </head>
-    <body>
+    <body id="backgroud">
         <header id="header">
             <!-- Image de la boutique
             <img src="" alt=""> -->

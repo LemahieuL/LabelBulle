@@ -1,5 +1,5 @@
-<main>
-    <div class="container">
+<main class="m-auto">
+    <div class="container-fluid">
         <div class="row d-flex justify-content-center">
             <form method="post" action="<?= $router->getFullUrl('pLogin') ?>">
                 <h1 class="d-flex justify-content-center pb-4">Connection</h1>
@@ -23,11 +23,10 @@
                                 <a>Mot de passe oublié?</a>
                             </div>
                         </div>
-                    </div>            
+                    </div>
                 </div>
                 <button type="submit" class="btn btn-primary">Connexion</button>
             </form>
         </div>
     </div>
 </main>
-
