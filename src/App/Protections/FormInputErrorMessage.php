@@ -9,7 +9,7 @@ class FormInputErrorMessage {
     private $errors = [];
 
     public function __construct() {
-        
+
     }
 
     public function getErrors() {
@@ -138,7 +138,7 @@ class FormInputErrorMessage {
             if ($user) {
                 return $user;
             } else {
-                $this->errors[$inputUserName] = 'Nom de compte ou mail n\'est pas utilisé.';
+                $this->errors[$inputUserName] = 'Le nom de compte ou mail n\'est pas utilisé.';
             }
         } else {
             $this->errors[$inputUserName] = 'Le champs est vide.';
@@ -154,7 +154,7 @@ class FormInputErrorMessage {
         }
         return false;
     }
-    
+
     public function matchPassword($password, $passwordHash) {
         if (password_verify($password, $passwordHash)) {
             return true;
@@ -164,9 +164,9 @@ class FormInputErrorMessage {
         }
         return false;
     }
-    
+
     public function __destruct() {
-        
+
     }
 
 }
