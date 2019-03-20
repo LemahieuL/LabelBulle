@@ -35,6 +35,9 @@ class ProfilController extends Controller {
     $this->render('profil/connection', ['errors' => $login]);
   }
 
+  /**
+  * Fonction pour se deconnecter.
+  **/
   public function getDisconect() {
     $profil = new Profil();
     $disconet = $profil->getDisconect();
@@ -84,9 +87,17 @@ class ProfilController extends Controller {
   * Fonction pour afficher le profil de l'utilisateur.
   */
   public function profil() {
-    $this->render('profil/profil');
+    $users = new Profil();
+    if($users->hasRank(1)){
+          $this->render('profil/profil');
+    } else {
+      $this->security->safeLocalRedirect('default');
+    }
   }
 
+  /**
+  * Fonction pour afficher la page de gestion.
+  **/
   public function management() {
     $users = new Profil();
     $collections = new Collection();
