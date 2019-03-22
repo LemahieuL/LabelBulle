@@ -89,7 +89,7 @@ class ProfilController extends Controller {
   public function profil() {
     $users = new Profil();
     if($users->hasRank(1)){
-          $this->render('profil/profil');
+          $this->render('profil/profil', ['user'=>$users]);
     } else {
       $this->security->safeLocalRedirect('default');
     }
@@ -116,7 +116,7 @@ class ProfilController extends Controller {
     $id = isset($_POST['deleteCollectionId']) ? $_POST['deleteCollectionId'] : 0;
     $collection = new Collection();
     $delete = $collection->getQueryDeleteCollection($id);
-    $this->security->safeLocalRedirect('profil');
+    $this->security->safeLocalRedirect('management');
   }
 
   /**
@@ -128,7 +128,8 @@ class ProfilController extends Controller {
     $type = new Type();
     if($users->hasRank(3)){
       if ($this->db->existContent('manga_collection', 'id', $id)) {
-        $this->render('manga/updateCollection', ['genres' => $type->showType()]);
+        $collection = new Collection($id);
+        $this->render('manga/updateCollection', ['genres' => $type->showType(), 'collection'=>$collection]);
       } else {
         $this->security->safeLocalRedirect('default');
       }

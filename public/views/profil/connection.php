@@ -20,7 +20,7 @@
                                 <a href="<?= $router->getFullUrl('register') ?>">Inscription.</a>
                             </div>
                             <div class="col-6">
-                                <a>Mot de passe oublié?</a>
+<!--                            <a>Mot de passe oublié?</a>-->
                             </div>
                         </div>
                     </div>

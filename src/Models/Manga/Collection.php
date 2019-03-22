@@ -19,7 +19,7 @@ class Collection {
     private $editor;
 
     /**
-     * Fonction qui va se lancer a l'apelle de la class et qui va stoquer les données des 
+     * Fonction qui va se lancer a l'apelle de la class et qui va stoquer les données des
      * differents manga si on à l'id de la collection.
      * @param boolean|int $id
      * @return boolean
@@ -104,12 +104,12 @@ class Collection {
         if (!$errors) {
             // on envois les information dans la fonction queryAddCollection pour créer la collection.
             $this->queryAddCollection([$collectionName, $description, $collectionImg['name'], $author, $editor, $idGenre]);
-            $this->security->safeLocalRedirect('profil');
+            $this->security->safeLocalRedirect('management');
         }
         // on retourne les message d'erreurs.
         return $verifications->getErrors();
     }
-    
+
     /**
      * Fonction pour afficher l'id de toutes les collections
      * @return \Models\Manga\Collection
@@ -173,9 +173,8 @@ class Collection {
         }
         if (!$errors) {
             $this->queryUpdateCollection([$collectionName, $description, $collectionImg['name'], $collectionAuthor, $collectionEditor, $genre, $id]);
-//            $this->security->safeLocalRedirect('profil');
+            $this->security->safeLocalRedirect('management');
         }
-        var_dump($verifications->getErrors());
         return $verifications->getErrors();
     }
 

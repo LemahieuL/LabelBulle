@@ -38,7 +38,8 @@
                 </div>
             </div>
         </form>
+        <?php if($user->hasRank(3)){ ?>
+            <a class="btn btn-primary" href="<?= $router->getFullUrl('management'); ?>">Gestion</a>
+        <?php } ?>
     </div>
-    <a class="btn btn-primary" href="<?= $router->getFullUrl('management'); ?>">Gestion</a>
 </main>
-

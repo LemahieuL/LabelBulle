@@ -12,7 +12,7 @@ $router->get('/user/register', 'Profil#getRegister', 'register');
 $router->get('/user/connection', 'Profil#getConnect', 'connection');
 $router->get('/user/disconect', 'Profil#getDisconect', 'disconect');
 $router->get('/user/profil', 'Profil#profil', 'profil');
-$router->get('user/management', 'Profil#management', 'management');
+$router->get('/user/management', 'Profil#management', 'management');
 
 /* route pour la gestion dans le profil */
 
@@ -20,7 +20,7 @@ $router->get('/user/edit','Profil#getEditUser','getEditUser');
 $router->get('/manga/addManga', 'Manga#getAddManga', 'addManga');
 $router->get('/manga/addCollection', 'Manga#getAddCollection', 'addCollection');
 
-/* route pour afficher les differents mangas */ 
+/* route pour afficher les differents mangas */
 
 $router->get('/manga/shonen', 'Manga#showShonen', 'showShonen');
 $router->get('/manga/shojo', 'Manga#showShojo', 'showShojo');
@@ -40,4 +40,3 @@ $router->post('/manga/addCollection', 'Manga#addCollection', 'createCollection')
 $router->post('/manga/addManga', 'Manga#addManga', 'createManga');
 $router->post('/user/updateCollection', 'Manga#editCollection', 'editCollection');
 $router->post('/user/deleteCollection', 'Profil#deleteCollection', 'deleteCollection');
-

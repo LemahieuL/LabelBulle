@@ -13,13 +13,13 @@
         <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Menu</h5>
         <ul class="list-unstyled">
           <li class="nav-item">
-            <a class="nav-link" href="<?= $router->getFullUrl('showShonen') ?>">Shōnen</a>
+            <a class="nav-link" href="<?= $router->getFullUrl('showShonen') ?>" title="Manga pour garçon">Shōnen</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<?= $router->getFullUrl('showShojo') ?>">Shōjo</a>
+            <a class="nav-link" href="<?= $router->getFullUrl('showShojo') ?>" title="Manga pour fille">Shōjo</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<?= $router->getFullUrl('showSeinen') ?>">Seinen</a>
+            <a class="nav-link" href="<?= $router->getFullUrl('showSeinen') ?>" title="manga pour jeune homme">Seinen</a>
           </li>
         </ul>
       </div>

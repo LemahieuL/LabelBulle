@@ -10,8 +10,8 @@
                             </div>
                             <div class="col-sm-12 col-md-9">
                                 <div class="card-body">
-                                    <h1 class="card-title"><?= $manga->getName(); ?></h1>
-                                    <p class="card-text"><?= substr($manga->getDescription(), 0,350) ?>...</p>
+                                    <h1 class="card-title" id="card-title"><?= $manga->getName(); ?></h1>
+                                    <p class="card-text" id="card-text"><?= substr($manga->getDescription(), 0,350) ?>...</p>
                                     <a href="<?= $router->getFullUrl('showMangaShonen'); ?>?id=<?= $manga->getId(); ?>" class="btn btn-primary">Voir les tomes</a>
                                 </div>
                             </div>

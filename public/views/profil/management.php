@@ -1,5 +1,5 @@
 <main class="container">
-    <h1>Page de Gestion</h1>
+    <h1 class="d-flex justify-content-center pb-2">Page de Gestion</h1>
     <!-- Gestion des différents manga par les employers et le Gérant -->
     <div class="container col-8">
         <table class="table table-hover col-12">

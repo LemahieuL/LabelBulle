@@ -1,4 +1,3 @@
-
 <main>
     <!-- Carrousel -->
     <!--            <div class="container-fluid">
@@ -102,5 +101,4 @@
             </div>
         </div>
     </div>
-</main>       
-
+</main>

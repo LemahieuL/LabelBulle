@@ -94,7 +94,7 @@ class Profil {
     public function getRank() {
         return new Rank($this->idRank);
     }
-    
+
     public function hasRank($rankId) {
         return $this->getRank()->getId() >= $rankId;
     }
@@ -121,7 +121,7 @@ class Profil {
     }
 
     /**
-     * Function qui va verifier les differentes données et 
+     * Function qui va verifier les differentes données et
      * si il n'y a pas d'erreur va créer l'utilisateur.
      * @param string $firstName
      * @param string $lastName
@@ -162,13 +162,13 @@ class Profil {
             $password = $this->security->hash($password);
             $birthDate = date('Y/m/d', strtotime(str_replace('/', '-', $birthDate)));
             $this->queryAddUsers([$firstName, $lastName, $mail, $userName, $password, $birthDate, $phoneNumber]);
-            $this->security->safeLocalRedirect('profil');
+            $this->security->safeLocalRedirect('connection');
         }
         return $verifications->getErrors();
     }
 
     /**
-     * Function qui va verifier les differentes données et 
+     * Function qui va verifier les differentes données et
      * si il n'y a pas d'errors va mettre à jour l'utilisateur.
      * @param string $firstName
      * @param string $lastName
@@ -210,7 +210,7 @@ class Profil {
     }
 
     /**
-     * Function qui va faire les verification pour la connectio, si il n'y a pas d'erreur 
+     * Function qui va faire les verification pour la connectio, si il n'y a pas d'erreur
      * elle va créer une session avec les paramettres de l'utilisateur.
      * @param string $login
      * @param string $password
@@ -238,13 +238,13 @@ class Profil {
         }
         return $verifications->getErrors();
     }
-    
+
     public function getDisconect(){
         unset($_SESSION['auth']);
     }
 
     /**
-     * 
+     *
      * @param string $id
      */
     public function deletUser($id) {
@@ -252,7 +252,7 @@ class Profil {
     }
 
     /**
-     * 
+     *
      * @return boolean
      */
     public function exists() {
@@ -260,7 +260,7 @@ class Profil {
     }
 
     /**
-     * 
+     *
      * @param string $password
      * @return type
      */
@@ -310,7 +310,7 @@ class Profil {
     }
 
     public function __destruct() {
-        
+
     }
 
 }

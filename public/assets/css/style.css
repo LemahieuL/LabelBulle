@@ -9,7 +9,7 @@ padding: 0;
 }
 
 #backgroud{
-    background-image : url('../image/backgroudImage2.jpg');
+    background-image : url('../image/backgroudImage5.jpg');
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size : cover;
@@ -19,6 +19,34 @@ padding: 0;
     margin-bottom : 80px;
 }
 
+a {
+  color : white;
+}
+
+label {
+  color: white;
+}
+
+h1 {
+  color: white;
+}
+
+h2 {
+  color: white;
+}
+
+p {
+  color: white;
+}
+
+/*Style pour les cards*/
+#card-title {
+  color: black;
+}
+
+#card-text {
+  color : black;
+}
 /*Style pour la navbar*/
 #navBar {
     width: 70%;
