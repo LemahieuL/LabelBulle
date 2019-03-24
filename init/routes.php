@@ -11,7 +11,7 @@ $router->get('/user/register', 'Profil#getRegister', 'register');
 $router->get('/user/connection', 'Profil#getConnect', 'connection');
 $router->get('/user/disconect', 'Profil#getDisconect', 'disconect');
 $router->get('/user/profil', 'Profil#profil', 'profil');
-$router->get('/user/management', 'Profil#management', 'management');
+$router->get('/user/managementProfil', 'Profil#management', 'management');
 
 /* route pour la gestion dans le profil */
 $router->get('/user/edit','Profil#getEditUser','getEditUser');
