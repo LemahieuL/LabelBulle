@@ -15,6 +15,7 @@ class MangaController extends Controller {
     public function getAddManga() {
       $collections = new Collection();
       $users = new Profil();
+      // Si l'utilisateur n'a pas le rank 3 minimun la page ne s'affiche pas.
       if($users->hasRank(3)){
         $this->render('manga/addManga', ['collections' => $collections->showCollection()]);
       } else {
@@ -40,12 +41,43 @@ class MangaController extends Controller {
         $this->render('manga/addManga', ['errors' => $manga, 'collections' => $collections->showCollection()]);
     }
 
+    public function getUpdateManga(){
+      $id = isset($_GET['id']) ? $_GET['id'] : 0;
+      $collections = new Collection();
+      $users = new Profil();
+      // Si l'utilisateur n'a pas le rank 3 minimun la page ne s'affiche pas.
+      if($users->hasRank(3)){
+        $manga = new Manga($id);
+        $this->render('manga/updateManga', ['collections' => $collections->showCollection(), 'manga'=> $manga]);
+      } else {
+        $this->security->safeLocalRedirect('default');
+      }
+    }
+
+    public function updateManga(){
+      $manga=[];
+      $collections = new Collection();
+      if(isset($_POST['mangaName'], $_POST['mangaNumber'], $_POST['mangaDescription'], $_FILES['mangaImg'], $_POST['mangaPrice'], $_POST['id'])){
+        $updateManga = new Manga();
+        $manga = $updateManga->upDateManga($_POST['mangaName'], $_POST['mangaNumber'], $_POST['mangaDescription'], $_FILES['mangaImg'], $_POST['mangaPrice'], $_POST['id']);
+      }
+      $this->render('manga/updateManga', ['errors'=> $manga, 'collections' => $collections->showCollection()]);
+    }
+
+    public function deleteManga(){
+      $id = isset($_POST['deleteMangaId']) ? $_POST['deleteMangaId'] : 0;
+      $collection = new Manga();
+      $delete = $collection->deleteManga($id);
+      $this->security->safeLocalRedirect('management');
+    }
+
     /**
      * Fonction pour afficher l'ajout de la collection des mangas.
      */
     public function getAddCollection() {
       $type = new Type();
       $users = new Profil();
+      // Si l'utilisateur n'a pas le rang 3 minimun la page ne s'affiche pas.
       if($users->hasRank(3)){
         $this->render('manga/addCollection', ['genres' => $type->showType()]);
       } else {
@@ -116,7 +148,7 @@ class MangaController extends Controller {
         $type = new Type();
         if (isset($_POST['collectionName'], $_POST['description'], $_POST['genre'], $_FILES['collectionImg'], $_POST['collectionAuthor'], $_POST['collectionEditor'])) {
             $updateCollection = new Collection();
-            $collection = $updateCollection->getQueryUpdateCollection($_POST['collectionName'], $_POST['description'], $_POST['genre'], $_FILES['collectionImg'], $_POST['collectionAuthor'], $_POST['collectionEditor'], $_POST['id']);
+            $collection = $updateCollection->updateCollection($_POST['collectionName'], $_POST['description'], $_POST['genre'], $_FILES['collectionImg'], $_POST['collectionAuthor'], $_POST['collectionEditor'], $_POST['id']);
         }
         $this->render('manga/updateCollection', ['errors'=>$collection, 'genres' => $type->showType()]);
     }

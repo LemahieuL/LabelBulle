@@ -16,7 +16,7 @@ $router->get('/user/managementProfil', 'Profil#management', 'management');
 /* route pour la gestion dans le profil */
 $router->get('/user/edit','Profil#getEditUser','getEditUser');
 $router->get('/manga/addManga', 'Manga#getAddManga', 'addManga');
-$router->get('/manga/managementCollection','Profil#getManagementShowManga','managementShowManga');
+$router->get('/manga/managementCollection','Profil#getManagementCollection','managementCollection');
 $router->get('/manga/addCollection', 'Manga#getAddCollection', 'addCollection');
 
 /* route pour afficher les differents mangas */
@@ -25,8 +25,9 @@ $router->get('/manga/shojo', 'Manga#showShojo', 'showShojo');
 $router->get('/manga/seinen', 'Manga#showSeinen', 'showSeinen');
 $router->get('/manga/mangaCollection', 'Manga#showManga', 'showMangaShonen');
 
-/* route pour la mise à jours des collections */
+/* route pour les mise à jours */
 $router->get('/user/updateCollection', 'Profil#updateCollection', 'updateCollection');
+$router->get('/manga/updateManga','Manga#getUpdateManga','updateManga');
 
 /* route POST pour l'utilisateur */
 $router->post('/user/register', 'Profil#createUser', 'createUser');
@@ -38,3 +39,5 @@ $router->post('/manga/addCollection', 'Manga#addCollection', 'createCollection')
 $router->post('/manga/updateCollection', 'Manga#editCollection', 'editCollection');
 $router->post('/manga/deleteCollection', 'Profil#deleteCollection', 'deleteCollection');
 $router->post('/manga/addManga', 'Manga#addManga', 'createManga');
+$router->post('/manga/updateManga', 'Manga#updateManga', 'editManga');
+$router->post('/manga/deleteManga', 'Manga#deleteManga', 'deleteManga');

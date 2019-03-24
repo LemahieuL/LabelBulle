@@ -110,11 +110,11 @@ class ProfilController extends Controller {
 
   }
 
-  public function getManagementShowManga(){
+  public function getManagementCollection(){
     $id = isset($_GET['id']) ? $_GET['id'] : 0;
     $mangas = new Manga();
     if ($this->db->existContent('manga_collection', 'id', $id)) {
-    $this->render('manga/managementShowManga', ['mangas'=>$mangas->showManga([$id])]);
+    $this->render('manga/managementCollection', ['page'=> 'managementCollection', 'mangas'=>$mangas->showManga([$id])]);
   } else {
       $this->security->safeLocalRedirect('default');
   }
@@ -126,7 +126,7 @@ class ProfilController extends Controller {
   public function deleteCollection() {
     $id = isset($_POST['deleteCollectionId']) ? $_POST['deleteCollectionId'] : 0;
     $collection = new Collection();
-    $delete = $collection->getQueryDeleteCollection($id);
+    $delete = $collection->deleteCollection($id);
     $this->security->safeLocalRedirect('management');
   }
 

@@ -94,8 +94,16 @@ class Manga {
         $verifications = new MangaErrorMessage();
         // on set les errors en faux.
         $errors = false;
+        //on verifie le nom du manga
+        if(!$verifications->isValidMangaName('mangaName', $mangaName)){
+          $errors =true;
+        }
         // on verifie le numeros du manga
         if (!$verifications->isValidMangaNumber('mangaNumber', $mangaNumber)) {
+            $errors = true;
+        }
+        // on verifie la description
+        if (!$verifications->isValidDescription('mangaDescription', $mangaNumber)) {
             $errors = true;
         }
         //on verifie le prix du manga
@@ -109,9 +117,35 @@ class Manga {
         // si il n'y a pas d'error on envois les donné dans la fonction queryAddManga et apres on redirige vers la page profil.
         if (!$errors) {
             $this->queryAddManga([$mangaName, $mangaNumber, $mangaDescription, $mangaImg['name'], $mangaPrice, $idMangaCollection]);
-            $this->security->safeLocalRedirect('profil');
+            $this->security->safeLocalRedirect('management');
         }
         return $verifications->getErrors();
+    }
+
+    public function updateManga($mangaName, $mangaNumber, $mangaDescription, $mangaImg, $mangaPrice, $id){
+      $verifications = new MangaErrorMessage();
+      $errors = false;
+      // on verifie le numeros du manga
+      if (!$verifications->isValidMangaNumber('mangaNumber', $mangaNumber)) {
+          $errors = true;
+      }
+      //on verifie le prix du manga
+      if (!$verifications->isValidPrice('mangaPrice', $mangaPrice)) {
+          $errors = true;
+      }
+      //on verifie l'image
+      if (!$verifications->isValidImage('mangaImg', $mangaImg)) {
+          $errors = true;
+      }
+      if (!$errors) {
+          $this->queryUpdateManga([$mangaName, $mangaNumber, $mangaDescription, $mangaImg['name'], $mangaPrice, $id]);
+          $this->security->safeLocalRedirect('management');
+      }
+      return $verifications->getErrors();
+    }
+
+    public function deleteManga($id){
+        $this->queryDeleteManga([$id]);
     }
 
     /**

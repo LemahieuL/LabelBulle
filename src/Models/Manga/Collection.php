@@ -156,11 +156,11 @@ class Collection {
         return $collections;
     }
 
-    public function getQueryDeleteCollection($id) {
+    public function deleteCollection($id) {
         $this->queryDeleteCollection([$id]);
     }
 
-    public function getQueryUpdateCollection($collectionName, $description, $genre, $collectionImg, $collectionAuthor, $collectionEditor, $id) {
+    public function updateCollection($collectionName, $description, $genre, $collectionImg, $collectionAuthor, $collectionEditor, $id) {
         $verifications = new MangaErrorMessage();
         $errors = false;
         if (!$verifications->isValidUpdateCollectionName('collectionName', $collectionName, $id)) {

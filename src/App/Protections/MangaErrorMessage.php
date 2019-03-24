@@ -129,8 +129,18 @@ class MangaErrorMessage {
         }
     }
 
-    public function mangaSerieVerification($inputName, $string){
-
+    public function isValidMangaName($inputName, $string) {
+        $req = $this->db->query('SELECT * FROM `manga_tomes` WHERE `tomeName` = ?', [$string]);
+        if (!empty($string)) {
+            if ($req->rowCount() === 0) {
+                return true;
+            } else {
+                $this->errors[$inputName] = 'Ce tome existe déjà.';
+            }
+        } else {
+            $this->errors[$inputName] = 'Le champs est vide.';
+        }
+        return false;
     }
 
 }

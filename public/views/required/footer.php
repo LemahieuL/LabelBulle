@@ -44,5 +44,8 @@
 <?php if(isset($page) && $page === 'management') { ?>
   <script src="<?= PROJECT_LINK; ?>/public/assets/js/management.js"></script>
 <?php } ?>
+<?php if(isset($page) && $page === 'managementCollection') { ?>
+  <script src="<?= PROJECT_LINK; ?>/public/assets/js/updateManga.js"></script>
+<?php } ?>
 </body>
 </html>

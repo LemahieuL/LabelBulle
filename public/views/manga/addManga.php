@@ -1,23 +1,21 @@
-
-<main>
+<main class="container-fluid">
     <div class="container">
-        <div class="row">
             <form method="post" action="<?= $router->getFullUrl('createManga') ?>" enctype="multipart/form-data">
-                <h1>Création d'une série.</h1>
+                <h1 class="text-center">Ajout d'un tome.</h1>
                 <div class="form-group row">
                     <div class="col-sm-12 col-md-9">
-                        <label for="mangaName">Nom du tome :</label>
-                        <input type="text" id="mangaName" name="mangaName" />
+                        <label for="mangaName">Nom du tome : <?php if (isset($errors['mangaName'])) { ?><span class="red-text"><?= $errors['mangaName']; ?></span><?php } ?></label>
+                        <input type="text" class="form-control" id="mangaName" name="mangaName" value="<?= isset($_POST['mangaName']) ? $_POST['mangaName'] : ''; ?>"/>
                     </div>
                     <div class="col-sm-12 col-md-3">
-                        <label for="mangaNumber">Numéro du tome :</label>
-                        <input type="text" id="mangaNumber" name="mangaNumber" />
+                        <label for="mangaNumber">Numéro du tome : <?php if (isset($errors['mangaNumber'])) { ?><span class="red-text"><?= $errors['mangaNumber']; ?></span><?php } ?></label>
+                        <input type="text" class="form-control" id="mangaNumber" name="mangaNumber" value="<?= isset($_POST['mangaNumber']) ? $_POST['mangaNumber'] : ''; ?>"/>
                     </div>
                 </div>
                 <div class="form-group row">
                     <div class="col-sm-12 col-md-8">
-                        <label for="mangaDescription">Description :</label>
-                        <textarea class="form-control" rows="3" id="mangaDescription" name="mangaDescription" ></textarea>
+                        <label for="mangaDescription">Description : <?php if (isset($errors['mangaDescription'])) { ?><span class="red-text"><?= $errors['mangaDescription']; ?></span><?php } ?></label>
+                        <textarea class="form-control" rows="3" id="mangaDescription" name="mangaDescription" ><?= isset($_POST['mangaDescription']) ? $_POST['mangaDescription'] : ''; ?></textarea>
                     </div>
                     <div class="col-sm-12 col-md-4">
                         <div>
@@ -25,21 +23,19 @@
                             <select name="mangaCollection" id="mangaCollection" class="form-control">
                                 <?php foreach ($collections as $collection) { ?>
                                     <option value="<?= $collection->getId() ?>"><?= $collection->getName() ?></option>
-
                                 <?php } ?>
                             </select>
                         </div>
                         <div>
-                            <label for="mangaPrice">Prix :</label>
-                            <input type="text" id="mangaPrice" name="mangaPrice" />  
+                            <label for="mangaPrice">Prix : <?php if (isset($errors['mangaPrice'])) { ?><span class="red-text"><?= $errors['mangaPrice']; ?></span><?php } ?></label>
+                            <input type="text" class="form-control" id="mangaPrice" name="mangaPrice" value="<?= isset($_POST['mangaPrice']) ? $_POST['mangaPrice'] : ''; ?>"/>
                         </div>
-
                     </div>
                 </div>
                 <div class="form-group row">
                     <div class="col">
-                        <label for="mangaImg">Couverture du Tome</label>
-                        <input type="file" id="mangaImg" name="mangaImg" />
+                        <label class="custom-file-label" for="mangaImg">Couverture du Tome : <?php if (isset($errors['mangaImg'])) { ?><span class="red-text"><?= $errors['mangaImg']; ?></span><?php } ?></label>
+                        <input type="file" class="custom-file-input" id="mangaImg" name="mangaImg" />
                     </div>
                 </div>
                 <div class="row">
@@ -49,5 +45,4 @@
                 </div>
             </form>
         </div>
-    </div>
 </main>
