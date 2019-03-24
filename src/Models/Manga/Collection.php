@@ -88,6 +88,10 @@ class Collection {
         if (!$verifications->isValidCollectionName('collectionName', $collectionName)) {
             $errors = true;
         }
+        //on verifie si la description
+        if (!$verifications->isValidDescription('description', $description)){
+          $errors = true;
+        }
         // on verifie le nom de l'auteur
         if (!$verifications->isValidName('author', $author)) {
             $errors = true;
@@ -159,9 +163,12 @@ class Collection {
     public function getQueryUpdateCollection($collectionName, $description, $genre, $collectionImg, $collectionAuthor, $collectionEditor, $id) {
         $verifications = new MangaErrorMessage();
         $errors = false;
-        //        if (!$verifications->isValidCollectionName('collectionName', $collectionName)) {
-        //            $errors = true;
-        //        }
+        if (!$verifications->isValidUpdateCollectionName('collectionName', $collectionName, $id)) {
+            $errors = true;
+        }
+        if (!$verifications->isValidDescription('description', $description)){
+            $errors=true;
+        }
         if (!$verifications->isValidName('author', $collectionAuthor)) {
             $errors = true;
         }

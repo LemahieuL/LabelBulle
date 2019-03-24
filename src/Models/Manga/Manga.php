@@ -18,11 +18,11 @@ class Manga {
     private $image;
     private $price;
     private $mangaCollection;
-    
+
 
     /**
-     * Fonction qui va se lancer à l'apelle de la fonction et 
-     * qui permet de stoquer les données si l'on a l'id du tome. 
+     * Fonction qui va se lancer à l'apelle de la fonction et
+     * qui permet de stoquer les données si l'on a l'id du tome.
      * @param boolean|int $id
      * @return boolean
      */
@@ -49,37 +49,37 @@ class Manga {
     public function getMangaId(){
         return $this->id;
     }
-    
+
     public function getMangaName() {
         return $this->name;
     }
-    
+
     public function getMangaTomeNumber(){
         return $this->tomeNumber;
     }
-    
+
     public function getMangaDescription(){
         return $this->description;
     }
-    
+
     public function getMangaImage(){
         return $this->image;
     }
-    
+
     public function getMangaPrice(){
         return $this->price;
     }
-    
+
     public function getMangaCollection(){
         return $this->mangaCollection;
     }
-    
+
     public function getNewMangaCollection(){
         return new Collection($this->mangaCollection);
     }
 
     /**
-     * Fonction qui va verifier mes données, renvoyer les messages d'errors 
+     * Fonction qui va verifier mes données, renvoyer les messages d'errors
      * et si il n'y a pas d'errors va pouvoir exectuer la function query avec les données.
      * @param string $mangaName
      * @param string $mangaNumber
@@ -113,7 +113,7 @@ class Manga {
         }
         return $verifications->getErrors();
     }
-    
+
     /**
      * Fonction qui va permetre d'afficher les mangas présants dans la table manga_tomes
      * et va renvoyer l'id pour pouvoir l'utiliser.
@@ -127,7 +127,7 @@ class Manga {
         }
         return $mangas;
     }
-    
+
     /**
      * Fonction pour afficher les mangas lorsque l'on a l'id de la collection.
      * @param type $id
@@ -149,6 +149,22 @@ class Manga {
      */
     private function queryAddManga($params = []) {
         $req = $this->db->query('INSERT INTO `manga_tomes`(tomeName,tomeNumbers,description,image,price,id_manga_collection) VALUE (?,?,?,?,?,?)', $params);
+        if ($req) {
+            return true;
+        }
+        return false;
+    }
+
+    private function queryUpdateManga($params = []) {
+        $req = $this->db->query('UPDATE `manga_tomes` SET `tomeName` = ?, `tomeNumbers` = ?, `description` = ?, `image` = ?, `price` = ? WHERE `id` = ?', $params);
+        if ($req) {
+            return true;
+        }
+        return false;
+    }
+
+    private function queryDeleteManga($params = []) {
+        $req = $this->db->query('DELETE FROM `manga_tomes` WHERE `id` = ?', $params);
         if ($req) {
             return true;
         }

@@ -2,6 +2,7 @@
 
 namespace Controllers;
 
+use \Models\Profil\Profil;
 use \Models\Manga\Manga;
 use \Models\Manga\Type;
 use \Models\Manga\Collection;
@@ -12,8 +13,13 @@ class MangaController extends Controller {
      * Fonction pour afficher l'ajout des mangas.
      */
     public function getAddManga() {
-        $collections = new Collection();
+      $collections = new Collection();
+      $users = new Profil();
+      if($users->hasRank(3)){
         $this->render('manga/addManga', ['collections' => $collections->showCollection()]);
+      } else {
+        $this->security->safeLocalRedirect('default');
+      }
     }
 
     /**
@@ -38,8 +44,13 @@ class MangaController extends Controller {
      * Fonction pour afficher l'ajout de la collection des mangas.
      */
     public function getAddCollection() {
-        $type = new Type();
+      $type = new Type();
+      $users = new Profil();
+      if($users->hasRank(3)){
         $this->render('manga/addCollection', ['genres' => $type->showType()]);
+      } else {
+        $this->security->safeLocalRedirect('default');
+      }
     }
 
     /**
@@ -101,12 +112,13 @@ class MangaController extends Controller {
      * Fonction pour mettre à jour une collection de manga.
      */
     public function editCollection() {
+        $collection = [];
         $type = new Type();
         if (isset($_POST['collectionName'], $_POST['description'], $_POST['genre'], $_FILES['collectionImg'], $_POST['collectionAuthor'], $_POST['collectionEditor'])) {
             $updateCollection = new Collection();
             $collection = $updateCollection->getQueryUpdateCollection($_POST['collectionName'], $_POST['description'], $_POST['genre'], $_FILES['collectionImg'], $_POST['collectionAuthor'], $_POST['collectionEditor'], $_POST['id']);
         }
-        $this->render('manga/updateCollection', ['genres' => $type->showType()]);
+        $this->render('manga/updateCollection', ['errors'=>$collection, 'genres' => $type->showType()]);
     }
 
 }

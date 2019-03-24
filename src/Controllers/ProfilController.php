@@ -6,6 +6,7 @@ use Models\Profil\Profil;
 use Models\Profil\Rank;
 use Models\Manga\Collection;
 use Models\Manga\Type;
+use Models\Manga\Manga;
 
 class ProfilController extends Controller {
 
@@ -13,7 +14,7 @@ class ProfilController extends Controller {
   * Fonction pour afficher l'inscription
   */
   public function getRegister() {
-    $this->render('profil/register');
+    $this->render('profil/register', ['page' => 'register']);
   }
 
   /**
@@ -80,7 +81,7 @@ class ProfilController extends Controller {
       $addUser = new Profil();
       $users = $addUser->addUsers($_POST['firstName'], $_POST['lastName'], $_POST['mail'], $_POST['login'], $_POST['password'], $_POST['birthDay'], $_POST['phoneNumber']);
     }
-    $this->render('profil/register', ['errors' => $users]);
+    $this->render('profil/register', ['page' => 'register', 'errors' => $users]);
   }
 
   /**
@@ -102,11 +103,21 @@ class ProfilController extends Controller {
     $users = new Profil();
     $collections = new Collection();
     if($users->hasRank(3)){
-      $this->render('profil/management', ['page' => 'profil', 'users' => $users->showUsers(), 'collections' => $collections->showCollection()]);
+      $this->render('profil/management', ['page' => 'management', 'users' => $users->showUsers(), 'collections' => $collections->showCollection()]);
     } else {
       $this->security->safeLocalRedirect('default');
     }
 
+  }
+
+  public function getManagementShowManga(){
+    $id = isset($_GET['id']) ? $_GET['id'] : 0;
+    $mangas = new Manga();
+    if ($this->db->existContent('manga_collection', 'id', $id)) {
+    $this->render('manga/managementShowManga', ['mangas'=>$mangas->showManga([$id])]);
+  } else {
+      $this->security->safeLocalRedirect('default');
+  }
   }
 
   /**

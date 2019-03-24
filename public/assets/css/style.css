@@ -47,20 +47,21 @@ p {
 #card-text {
   color : black;
 }
-/*Style pour la navbar*/
-#navBar {
-    width: 70%;
-}
 
 .card-footer{
     color: white;
     background-color: #9D9D9D;
 }
 
+/*Style pour la navbar*/
+#navBar {
+    width: 70%;
+}
+
 /*Style pour le footer*/
 .page-footer {
     padding-top: 1.5rem;
-    background-color:  #1e2c59;
+    background-color:  #2D2E2E;
     color:  #ffffff;
 }
 

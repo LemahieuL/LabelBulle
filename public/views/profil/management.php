@@ -1,4 +1,4 @@
-<main class="container">
+<main class="container-fluid">
     <h1 class="d-flex justify-content-center pb-2">Page de Gestion</h1>
     <!-- Gestion des différents manga par les employers et le Gérant -->
     <div class="container col-8">
@@ -7,7 +7,7 @@
                 <?php foreach ($collections as $collection) { ?>
                     <tr class="table-active">
                         <th scope="row"><?= $collection->getName(); ?></th>
-                        <td><span class="badge badge-primary badge-pill text-white">1</span></td>
+                        <td><a class="badge badge-primary badge-pill text-white" href="<?= $router->getFullUrl('managementShowManga'); ?>?id=<?= $collection->getId() ;?>">afficher</a></td>
                         <td><a class="badge badge-warning badge-pill text-white" href="<?= $router->getFullUrl('updateCollection'); ?>?id=<?= $collection->getId(); ?>">modifier</a></td>
                         <td><a class="badge badge-danger badge-pill text-white deleteCollection" data-collection-id="<?= $collection->getId(); ?>" data-toggle="modal" data-target="#collectionSupression">supprimer</a></td>
                     </tr>

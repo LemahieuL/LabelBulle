@@ -31,6 +31,33 @@ class MangaErrorMessage {
         return false;
     }
 
+    public function isValidUpdateCollectionName($inputName, $string, $id) {
+        $req = $this->db->query('SELECT * FROM `manga_collection` WHERE `collectionName` = ? AND `id` = ?', [$string, $id]);
+        $verificationsReq = $this->db->query('SELECT * FROM `manga_collection` WHERE `collectionName` = ?', [$string]);
+        if (!empty($string)) {
+            if ($req->rowCount() === 1) {
+                return true;
+            } else if ($verificationsReq->rowCount() === 0) {
+              return true;
+              } else {
+                $this->errors[$inputName] = 'La collection existe déjà.';
+            }
+        } else {
+            $this->errors[$inputName] = 'Le champs est vide.';
+        }
+        return false;
+    }
+
+    public function isValidDescription($inputName, $string) {
+        $req = $this->db->query('SELECT * FROM `manga_collection` WHERE `description` = ?', [$string]);
+        if (!empty($string)) {
+          return true;
+        } else {
+            $this->errors[$inputName] = 'Le champs est vide.';
+        }
+        return false;
+    }
+
     public function isValidName($inputName, $string) {
         if (!empty($string)) {
             /* Si le champs est vide il renvoit le message et passe la variable error en true */
@@ -77,7 +104,7 @@ class MangaErrorMessage {
 
         return false;
     }
-    
+
     public function isValidMangaNumber($inputName, $string){
         if(!empty($string)){
             if(preg_match('/^\d+$/', $string)){
@@ -101,9 +128,9 @@ class MangaErrorMessage {
             $this->errors[$inputName] = 'le champs est vide.';
         }
     }
-    
+
     public function mangaSerieVerification($inputName, $string){
-        
+
     }
 
 }
