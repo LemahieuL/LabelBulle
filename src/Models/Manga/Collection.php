@@ -130,32 +130,41 @@ class Collection {
     }
 
     public function showShonen() {
+      // la requette pour aller chercher l'id dans la table manga_collection quand l'id de du genre est 1.
         $req = $this->db->query('SELECT `id` FROM `manga_collection` WHERE id_genre = 1');
         $collections = [];
         while ($collection = $req->fetch()) {
+          // on retourne l'id de la collection dans la class Collection
             $collections[] = new Collection($collection->id);
         }
         return $collections;
     }
 
     public function showShojo() {
+      // la requette pour aller chercher l'id dans la table manga_collection quand l'id de du genre est 2.
         $req = $this->db->query('SELECT `id` FROM `manga_collection` WHERE id_genre = 2');
         $collections = [];
         while ($collection = $req->fetch()) {
+          // on retourne l'id de la collection dans la class Collection
             $collections[] = new Collection($collection->id);
         }
         return $collections;
     }
 
     public function showSeinen() {
+      // la requette pour aller chercher l'id dans la table manga_collection quand l'id de du genre est 3.
         $req = $this->db->query('SELECT `id` FROM `manga_collection` WHERE id_genre = 3');
         $collections = [];
         while ($collection = $req->fetch()) {
+          // on retourne l'id de la collection dans la class Collection
             $collections[] = new Collection($collection->id);
         }
         return $collections;
     }
 
+    /**
+    * Fonction qui va envoyer les donnée dans la fonction queryDeleteCollection
+    **/
     public function deleteCollection($id) {
         $this->queryDeleteCollection([$id]);
     }
@@ -163,29 +172,40 @@ class Collection {
     public function updateCollection($collectionName, $description, $genre, $collectionImg, $collectionAuthor, $collectionEditor, $id) {
         $verifications = new MangaErrorMessage();
         $errors = false;
+        // on verifie le nom de la collection
         if (!$verifications->isValidUpdateCollectionName('collectionName', $collectionName, $id)) {
             $errors = true;
         }
+        // on verifie la description
         if (!$verifications->isValidDescription('description', $description)){
             $errors=true;
         }
+        // on verifie le nom de l'auteur
         if (!$verifications->isValidName('author', $collectionAuthor)) {
             $errors = true;
         }
+        // on verifie le nom de l'éditeur
         if (!$verifications->isValidName('editor', $collectionEditor)) {
             $errors = true;
         }
+        // on verifie l'image
         if (!$verifications->isValidImage('collectionImg', $collectionImg)) {
             $errors = true;
         }
+        // si il n'y a pas d'erreur on envois les donné dans la fonction pour la mise à jour de la collection
         if (!$errors) {
             $this->queryUpdateCollection([$collectionName, $description, $collectionImg['name'], $collectionAuthor, $collectionEditor, $genre, $id]);
             $this->security->safeLocalRedirect('management');
         }
+        // on renvois les message d'erreurs
         return $verifications->getErrors();
     }
 
+    /**
+    * Fonction privé qui permet l'ajout d'une collection
+    **/
     private function queryAddCollection($params = []) {
+      // requet pour la creation d'une collection' à partir des differentes infomation demandé
         $req = $this->db->query('INSERT INTO `manga_collection`(collectionName,description,image,author,editor,id_genre) VALUE (?,?,?,?,?,?)', $params);
         if ($req) {
             return true;
@@ -193,7 +213,11 @@ class Collection {
         return false;
     }
 
+    /**
+    * Fonction privé qui permet la mise à jour d'une collection
+    **/
     private function queryUpdateCollection($params = []) {
+      // requet pour la mise à jour d'une collection à partir des differentes infomation demandé
         $req = $this->db->query('UPDATE `manga_collection` SET `collectionName` = ?, `description` = ?, `image` = ?, `author` = ?, `editor` = ?, `id_genre` = ? WHERE `id` = ?', $params);
         if ($req) {
             return true;
@@ -201,7 +225,11 @@ class Collection {
         return false;
     }
 
+    /**
+    * Fonction privé qui permet la suppresion d'une collection
+    **/
     private function queryDeleteCollection($params = []) {
+      // requet pour la suppresion d'une collection à partir de l'id
         $req = $this->db->query('DELETE FROM `manga_collection` WHERE `id` = ?', $params);
         if ($req) {
             return true;

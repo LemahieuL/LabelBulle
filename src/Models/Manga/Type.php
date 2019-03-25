@@ -6,10 +6,10 @@ use Models\Database\PDOConnect;
 use App\Protections\Security;
 
 class Type {
-    
+
     private $id ;
     private $name;
-    
+
     /**
      * Fonction qui va permetre de stoquer les valeurs des genres si on possède l'id.
      * @param boolean|int $id
@@ -29,7 +29,7 @@ class Type {
         }
         return false;
     }
-    
+
     /**
      * Fonction qui va renvoyer l'id du genre.
      * @return int
@@ -37,7 +37,7 @@ class Type {
     public function getId(){
        return $this->id;
     }
-    
+
     /**
      * Fonction qui va renvoyer le nom du genre.
      * @return string
@@ -45,7 +45,7 @@ class Type {
     public function getName(){
         return $this->name;
     }
-    
+
     /**
      * Fonction qui va retourner l'id pour la function construct pour chaque genre de manga.
      * @return \Models\Manga\Type
@@ -54,6 +54,7 @@ class Type {
         $req = $this->db->query('SELECT * FROM `types`');
         $types = [];
         while ($type = $req->fetch()) {
+          // on retourne dans la tableu $type le genre du manga grace à son id
             $types[] = new Type($type->id);
         }
         return $types;

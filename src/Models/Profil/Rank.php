@@ -7,11 +7,13 @@ use App\Protections\FormInputErrorMessage;
 use App\Protections\Security;
 
 class Rank {
-    
+
     private $id ;
     private $name;
-    
 
+    /**
+    * Fonction public qui est executer quand on apelle cette class
+    **/
     public function __construct($id = false) {
         $this->security = new Security();
         $this->db = new PDOConnect();
@@ -26,18 +28,28 @@ class Rank {
         }
         return false;
     }
-    
+
+    /**
+    * On recuper l'id du rang
+    **/
     public function getId(){
        return (int) $this->id;
     }
-    
+
+    /**
+    * On recuper le nom du rang
+    **/
     public function getName(){
         return $this->name;
     }
 
+    /**
+    * Fonction pour afficher les rangs
+    **/
     public function showRank() {
         $req = $this->db->query('SELECT * FROM `ranks`');
         $ranks = [];
+        // on fait un boucle pour pouvoir afficher les rangs en fonction de leur id
         while ($rank = $req->fetch()) {
             $ranks[] = new Rank($rank->id);
         }

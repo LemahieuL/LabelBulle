@@ -137,13 +137,18 @@ class Manga {
       if (!$verifications->isValidImage('mangaImg', $mangaImg)) {
           $errors = true;
       }
+      // si il n'y a pas d'erreur on envois les donné dans la fonction de mise à jour des manga
       if (!$errors) {
           $this->queryUpdateManga([$mangaName, $mangaNumber, $mangaDescription, $mangaImg['name'], $mangaPrice, $idMangaCollection, $id]);
           $this->security->safeLocalRedirect('management');
       }
+      // on affiche les messages d'erreurs
       return $verifications->getErrors();
     }
 
+    /**
+    * Fonction pour envoyer les donné dans la fonction de suppresion des mangas
+    **/
     public function deleteManga($id){
         $this->queryDeleteManga([$id]);
     }
@@ -189,6 +194,9 @@ class Manga {
         return false;
     }
 
+    /**
+    * Fonction pour la mise à jour des manga à partir des informations demander dans le formulaire.
+    **/
     private function queryUpdateManga($params = []) {
         $req = $this->db->query('UPDATE `manga_tomes` SET `tomeName` = ?, `tomeNumbers` = ?, `description` = ?, `image` = ?, `price` = ? ,`id_manga_collection` = ? WHERE `id` = ?', $params);
         if ($req) {
@@ -197,6 +205,9 @@ class Manga {
         return false;
     }
 
+    /**
+    * Fonction pour la suppresion des manga à partir de l'id
+    **/
     private function queryDeleteManga($params = []) {
         $req = $this->db->query('DELETE FROM `manga_tomes` WHERE `id` = ?', $params);
         if ($req) {
