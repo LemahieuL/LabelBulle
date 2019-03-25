@@ -1,4 +1,4 @@
-<main>
+<main class="container-fluid">
     <!-- Début du formulaire -->
     <div class="container pt-3" id="containerForm">
         <div class="row d-flex justify-content-center">

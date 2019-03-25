@@ -1,11 +1,18 @@
-<main>
+<main class="container-fluid">
     <div class="container col-8" >
+      <h1 class="text-center pb-2">Page de Profil.</h1>
+      <div class="container">
+        <p class="text-center">Nom : <?=$user->getFirstName(); ?></p>
+        <p class="text-center">Prénom : <?=$user->getLastName(); ?></p>
+        <p class="text-center">Adresse mail actuelle : <?=$user->getMail(); ?></p>
+        <p class="text-center">Votre rang sur le site est : <?=$user->getRank(); ?></p>
+      </div>
         <p>
             <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#mailFormChanged" aria-expanded="false" aria-controls="collapseExample">
                 Modifier votre adresse mail
             </button>
         </p>
-        <div id="mailFormChanged" class="card collapse">
+        <div id="mailFormChanged" class="collapse">
             <form method="post">
                 <div class="row  pb-4">
                     <div class="col-sm-12 col-md-8">
@@ -38,8 +45,5 @@
                 </div>
             </div>
         </form>
-        <?php if($user->hasRank(3)){ ?>
-            <a class="btn btn-primary" href="<?= $router->getFullUrl('management'); ?>">Gestion</a>
-        <?php } ?>
     </div>
 </main>

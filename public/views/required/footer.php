@@ -2,15 +2,16 @@
   <div class="container-fluid text-center text-md-left">
     <div class="row">
       <div class="col-lg-4 col-md-4 mx-auto">
-        <h5 class="font-weight-bold text-uppercase mt-3 mb-4 text-center">A propos</h5>
-        <p class="text-justify"></p>
+        <h3 class="font-weight-bold text-uppercase mt-3 mb-4 text-center">A propos</h3>
+        <p class="text-justify">Label Bulles est une boutique situé 76 Avenue René Coty, 76600 Le Havre. Elle est spécialisé dans la vente de Bd, Mangas, Jeux de societé et tours de magie</p>
+        <p class="text-justify">Ouverte le Lundi à partir de 14h jusqu'à 19h et du mardi au samedi de 10h jusqu'à 19h.</p>
       </div>
       <div class="col-lg-4 col-md-6 mx-auto tcolor text-center">
       <!--Maps Google-->
         <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d10365.226445541946!2d0.1141593!3d49.4976036!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xfe4b0c42f3814072!2sLabel+Bulles+%26+Pile+et+Face!5e0!3m2!1sfr!2sfr!4v1552903459275" width="60%" height="200" frameborder="0" style="border:0" allowfullscreen></iframe>
       </div>
       <div class="col-lg-4 col-md-2 mx-auto text-center">
-        <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Menu</h5>
+        <h3 class="font-weight-bold text-uppercase mt-3 mb-4">Menu</h3>
         <ul class="list-unstyled">
           <li class="nav-item">
             <a class="nav-link" href="<?= $router->getFullUrl('showShonen'); ?>" title="Manga pour garçon">Shōnen</a>

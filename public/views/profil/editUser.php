@@ -1,5 +1,4 @@
-
-<main>
+<main class="container-fluid">
     <div class="container" id="containerForm">
         <div class="row">
             <div class="col-md-10">
@@ -14,7 +13,7 @@
                             <label for="lastName">*Prénom : <?php if (isset($errors['lastName'])) { ?><span class="red-text"><?= $errors['lastName']; ?></span><?php } ?></label>
                             <input type="text" class="form-control" name="lastName" id="lastName" value="<?= isset($lastName) ? $lastName : ''; ?>" placeholder="Votre Prénom" />
                         </div>
-                    </div>  
+                    </div>
                     <div class="form-group row">
                         <div class="col-sm-12 col-md-4">
                             <label for="birthDay">Date de naissance : <?php if (isset($errors['birthDay'])) { ?><span class="red-text"><?= $errors['birthDay']; ?></span><?php } ?></label>
@@ -29,7 +28,7 @@
                             </select>
                         </div>
                         <div class="col-sm-12 col-md-4">
-                            <label for="phoneNumber">Téléphone: <?php if (isset($errors['phoneNumber'])) { ?><span class="red-text"><?= $errors['phoneNumber']; ?></span><?php } ?></label>  
+                            <label for="phoneNumber">Téléphone: <?php if (isset($errors['phoneNumber'])) { ?><span class="red-text"><?= $errors['phoneNumber']; ?></span><?php } ?></label>
                             <input type="tel" class="form-control" name="phoneNumber" id="phoneNumber" value="<?= isset($phone) ? $phone : ''; ?>" />
                         </div>
                     </div>

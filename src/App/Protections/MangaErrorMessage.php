@@ -105,10 +105,15 @@ class MangaErrorMessage {
         return false;
     }
 
-    public function isValidMangaNumber($inputName, $string){
+    public function isValidMangaNumber($inputName, $string, $id){
+      $req= $this->db->query('SELECT * FROM `manga_tomes` WHERE `tomeNumbers` = ? AND `id_manga_collection` = ?', [$string, $id]);
         if(!empty($string)){
             if(preg_match('/^\d+$/', $string)){
+              if($req->rowCount() === 0){
             return true;
+          } else {
+            $this->errors[$inputName] = 'Numéro de tome déjà utilisé';
+          }
             }else{
                 $this->errors[$inputName] = 'Mauvais caractères.';
             }

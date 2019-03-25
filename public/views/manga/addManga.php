@@ -3,11 +3,11 @@
             <form method="post" action="<?= $router->getFullUrl('createManga') ?>" enctype="multipart/form-data">
                 <h1 class="text-center">Ajout d'un tome.</h1>
                 <div class="form-group row">
-                    <div class="col-sm-12 col-md-9">
+                    <div class="col-sm-12 col-md-8">
                         <label for="mangaName">Nom du tome : <?php if (isset($errors['mangaName'])) { ?><span class="red-text"><?= $errors['mangaName']; ?></span><?php } ?></label>
                         <input type="text" class="form-control" id="mangaName" name="mangaName" value="<?= isset($_POST['mangaName']) ? $_POST['mangaName'] : ''; ?>"/>
                     </div>
-                    <div class="col-sm-12 col-md-3">
+                    <div class="col-sm-12 col-md-4">
                         <label for="mangaNumber">Numéro du tome : <?php if (isset($errors['mangaNumber'])) { ?><span class="red-text"><?= $errors['mangaNumber']; ?></span><?php } ?></label>
                         <input type="text" class="form-control" id="mangaNumber" name="mangaNumber" value="<?= isset($_POST['mangaNumber']) ? $_POST['mangaNumber'] : ''; ?>"/>
                     </div>
@@ -40,7 +40,7 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-12 col-md-3">
-                        <button class="btn btn-primary w-1OO text-white" type="submit">Créer le manga</button>
+                        <button class="btn btn-primary w-1OO text-white" type="submit">Ajouter un Tome</button>
                     </div>
                 </div>
             </form>

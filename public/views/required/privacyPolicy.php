@@ -1,4 +1,4 @@
-<main>
+<main class="container-fluid">
 <h1 class="text-center pb-2">POLITIQUE DE CONFIDENTIALITÉ</h1>
 
 <h2>ARTICLE 1 – RENSEIGNEMENTS PERSONNELS RECUEILLIS</h2>

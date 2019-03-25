@@ -1,4 +1,4 @@
-<main class="m-auto">
+<main class="container-fluid">
     <div class="container-fluid pt-3">
         <div class="row d-flex justify-content-center">
             <form method="post" action="<?= $router->getFullUrl('pLogin') ?>">

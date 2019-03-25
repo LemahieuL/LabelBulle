@@ -57,9 +57,9 @@ class MangaController extends Controller {
     public function updateManga(){
       $manga=[];
       $collections = new Collection();
-      if(isset($_POST['mangaName'], $_POST['mangaNumber'], $_POST['mangaDescription'], $_FILES['mangaImg'], $_POST['mangaPrice'], $_POST['id'])){
+      if(isset($_POST['mangaName'], $_POST['mangaNumber'], $_POST['mangaDescription'], $_FILES['mangaImg'], $_POST['mangaPrice'], $_POST['mangaCollection'], $_POST['id'])){
         $updateManga = new Manga();
-        $manga = $updateManga->upDateManga($_POST['mangaName'], $_POST['mangaNumber'], $_POST['mangaDescription'], $_FILES['mangaImg'], $_POST['mangaPrice'], $_POST['id']);
+        $manga = $updateManga->upDateManga($_POST['mangaName'], $_POST['mangaNumber'], $_POST['mangaDescription'], $_FILES['mangaImg'], $_POST['mangaPrice'], $_POST['mangaCollection'], $_POST['id']);
       }
       $this->render('manga/updateManga', ['errors'=> $manga, 'collections' => $collections->showCollection()]);
     }

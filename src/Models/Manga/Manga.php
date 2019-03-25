@@ -99,7 +99,7 @@ class Manga {
           $errors =true;
         }
         // on verifie le numeros du manga
-        if (!$verifications->isValidMangaNumber('mangaNumber', $mangaNumber)) {
+        if (!$verifications->isValidMangaNumber('mangaNumber', $mangaNumber, $idMangaCollection)) {
             $errors = true;
         }
         // on verifie la description
@@ -122,11 +122,11 @@ class Manga {
         return $verifications->getErrors();
     }
 
-    public function updateManga($mangaName, $mangaNumber, $mangaDescription, $mangaImg, $mangaPrice, $id){
+    public function updateManga($mangaName, $mangaNumber, $mangaDescription, $mangaImg, $mangaPrice, $idMangaCollection, $id){
       $verifications = new MangaErrorMessage();
       $errors = false;
       // on verifie le numeros du manga
-      if (!$verifications->isValidMangaNumber('mangaNumber', $mangaNumber)) {
+      if (!$verifications->isValidMangaNumber('mangaNumber', $mangaNumber, $idMangaCollection)) {
           $errors = true;
       }
       //on verifie le prix du manga
@@ -138,7 +138,7 @@ class Manga {
           $errors = true;
       }
       if (!$errors) {
-          $this->queryUpdateManga([$mangaName, $mangaNumber, $mangaDescription, $mangaImg['name'], $mangaPrice, $id]);
+          $this->queryUpdateManga([$mangaName, $mangaNumber, $mangaDescription, $mangaImg['name'], $mangaPrice, $idMangaCollection, $id]);
           $this->security->safeLocalRedirect('management');
       }
       return $verifications->getErrors();
@@ -190,7 +190,7 @@ class Manga {
     }
 
     private function queryUpdateManga($params = []) {
-        $req = $this->db->query('UPDATE `manga_tomes` SET `tomeName` = ?, `tomeNumbers` = ?, `description` = ?, `image` = ?, `price` = ? WHERE `id` = ?', $params);
+        $req = $this->db->query('UPDATE `manga_tomes` SET `tomeName` = ?, `tomeNumbers` = ?, `description` = ?, `image` = ?, `price` = ? ,`id_manga_collection` = ? WHERE `id` = ?', $params);
         if ($req) {
             return true;
         }

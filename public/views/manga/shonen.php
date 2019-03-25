@@ -1,4 +1,4 @@
-<main>
+<main class="container-fluid">
     <?php foreach ($mangas as $manga) { ?>
         <div class="container">
             <div class="row d-flex justify-content-center">

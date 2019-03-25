@@ -91,12 +91,16 @@ class Profil {
      * function pour recuperer l'id du rang de l'utilisateur.
      * @return int
      */
-    public function getRank() {
+    public function getIdRank() {
         return new Rank($this->idRank);
     }
 
     public function hasRank($rankId) {
-        return $this->getRank()->getId() >= $rankId;
+        return $this->getIdRank()->getId() >= $rankId;
+    }
+
+    public function getRank(){
+      return $this->getIdRank()->getName();
     }
 
     /**

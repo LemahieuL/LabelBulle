@@ -1,4 +1,4 @@
-<main>
+<main class="container-fluid">
     <?php foreach ($mangas as $manga) { ?>
         <div class="container pb-5">
             <div class="row">
