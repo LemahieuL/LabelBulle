@@ -17,6 +17,9 @@ class IndexController extends Controller {
         $this->render('errors/404');
     }
 
+    /**
+    * fonction pour afficher les politique de confidentialité
+    **/
     public function privaty_polity(){
         $this->render('required/privacyPolicy');
     }
