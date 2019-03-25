@@ -40,7 +40,7 @@
             </div>
             <div class="row">
                 <div class="col-sm-12 col-md-3">
-                    <button class="btn btn-primary w-1OO text-white" type="submit">Créer la collection</button>
+                    <button class="btn btn-primary w-1OO text-white btn-block" type="submit">Créer la collection</button>
                 </div>
             </div>
         </form>

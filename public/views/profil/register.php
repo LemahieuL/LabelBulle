@@ -35,7 +35,6 @@
                             <input type="text" class="form-control" name="mail" id="mail" value="<?= isset($_POST['mail']) ? $_POST['mail'] : ''; ?>" placeholder="Example@adresse.mail" />
                         </div>
                     </div>
-
                     <div class="form-group row">
                         <div class="col-sm-12 col-md-6">
                             <label for="password">*Mot de passe : <?php if (isset($errors['password'])) { ?><span class="red-text"><?= $errors['password']; ?></span><?php } ?></label>
@@ -47,7 +46,7 @@
                         </div>
                     </div>
                     <p>Les champs avec un "*" sont obligatoires.</p>
-                    <button class="btn btn-info my-4 btn-block" type="submit">Validation</button>
+                    <button class="btn btn-primary my-4 btn-block" type="submit">Validation</button>
                 </form>
             </div>
         </div>
