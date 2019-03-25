@@ -1,5 +1,5 @@
 <main class="container-fluid">
-  <div class="container-fluid pt-3">
+  <div class="container pt-3">
     <div class="row d-flex justify-content-center">
       <form method="post" action="<?= $router->getFullUrl('pLogin') ?>">
         <h1 class="d-flex justify-content-center pb-4">Connexion</h1>

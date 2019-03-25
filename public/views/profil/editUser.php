@@ -1,7 +1,5 @@
 <main class="container-fluid">
-    <div class="container" id="containerForm">
-        <div class="row">
-            <div class="col-md-10">
+    <div class="container col-10">
                 <form method="post" action="<?= $router->getFullUrl('editUser') ?>?id=<?= $_GET['id'] ?>">
                     <h1 class="d-flex justify-content-center pb-2">Modifications</h1>
                     <div class="form-group row">
@@ -44,9 +42,7 @@
                     </div>
                     <input name="id" type="text" hidden value="<?= $_GET['id'] ?>" />
                     <p>Les champs avec un "*" sont obligatoires.</p>
-                    <button class="btn btn-info my-4 btn-block" type="submit">Validation</button>
+                    <button class="btn btn-primary btn-block" type="submit">Validation</button>
                 </form>
-            </div>
         </div>
-    </div>
 </main>
