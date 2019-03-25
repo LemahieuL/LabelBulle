@@ -1,5 +1,5 @@
 <main class="container-fluid">
-        <p>
-            TU ES PAS AU BON ENDROIT.
+        <p class="text-center">
+            Erreur 404 cette page n'existe pas
         </p>
 </main>

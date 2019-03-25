@@ -14,6 +14,7 @@ class ProfilController extends Controller {
   * Fonction pour afficher l'inscription
   */
   public function getRegister() {
+    //on affiche la page d'inscription
     $this->render('profil/register', ['page' => 'register']);
   }
 
@@ -21,6 +22,7 @@ class ProfilController extends Controller {
   * Fonction pour afficher la connection
   */
   public function getConnect() {
+    // on affiche la page de connexion
     $this->render('profil/connection');
   }
 
@@ -29,10 +31,14 @@ class ProfilController extends Controller {
   */
   public function login() {
     $login = [];
+    // on verifie que on a les donnée de la connexion
     if (isset($_POST['loginUserName'], $_POST['loginPassword'])) {
+      // on instancie la variable $user avec la class Profi
       $user = new Profil();
+      // on envois les donnée dans la fonction loginUser
       $login = $user->loginUser($_POST['loginUserName'], $_POST['loginPassword']);
     }
+    // on affiche les erreurs
     $this->render('profil/connection', ['errors' => $login]);
   }
 
@@ -40,8 +46,11 @@ class ProfilController extends Controller {
   * Fonction pour se deconnecter.
   **/
   public function getDisconect() {
+    //on instancie la variable $profil avec la class Profil
     $profil = new Profil();
+    // on envois les donnée dans la variable getDisconect
     $disconet = $profil->getDisconect();
+    // on redirige vers la page d'acceuil
     $this->security->safeLocalRedirect('index');
   }
 
@@ -50,11 +59,16 @@ class ProfilController extends Controller {
   * Fonction pour afficher la mise à jour des utilisateur.
   */
   public function getEditUser() {
+    // on instancie la varibale $users avec la class Profil
     $users = new Profil();
+    // on instancie la varibale $rank avec la class Rank
     $rank = new Rank();
+    // on verifie si l'utilisateur a la rang 3 au minimun sinon il est rediriger vers la page 404
     if($users->hasRank(3)){
+      // on affiche la page de mise à jour des profils
       $this->render('profil/editUser', ['ranks' => $rank->showRank()]);
     } else {
+      // on affiche les erreurs
       $this->security->safeLocalRedirect('default');
     }
   }
@@ -64,11 +78,16 @@ class ProfilController extends Controller {
   */
   public function editUser() {
     $user = [];
+    // on instancie la varibale $rank avec la class Rank
     $rank = new Rank();
+    // on verifie si on resoit les informations
     if (isset($_POST['firstName'], $_POST['lastName'], $_POST['mail'], $_POST['login'])) {
+      // on instancie la variable $updateUser avec la class Profl
       $updateUser = new Profil();
+      // on envois les donné dans la fonction editUserForm.
       $user = $updateUser->editUserForm($_POST['firstName'], $_POST['lastName'], $_POST['mail'], $_POST['login'], $_POST['birthDay'], $_POST['phoneNumber'], $_POST['idRank'], $_POST['id']);
     }
+    // on affiche les erreurs
     $this->render('profil/editUser', ['errors' => $user, 'ranks' => $rank->showRank()]);
   }
 
@@ -77,10 +96,14 @@ class ProfilController extends Controller {
   */
   public function createUser() {
     $users = [];
+    // on verifie que on à les données
     if (isset($_POST['firstName'], $_POST['lastName'], $_POST['mail'], $_POST['login'], $_POST['password'])) {
+      // on instancie la variable $addUser avec la class Profil
       $addUser = new Profil();
+      // on envoie les données dans la fonction addUsers
       $users = $addUser->addUsers($_POST['firstName'], $_POST['lastName'], $_POST['mail'], $_POST['login'], $_POST['password'], $_POST['birthDay'], $_POST['phoneNumber']);
     }
+    // on affiche les erreurs
     $this->render('profil/register', ['page' => 'register', 'errors' => $users]);
   }
 
